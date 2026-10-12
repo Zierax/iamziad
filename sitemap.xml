@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://personal.iamziad.isroot.in/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://personal.iamziad.isroot.in/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://personal.iamziad.isroot.in/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://personal.iamziad.isroot.in/"/>
+  </url>
+  <url>
+    <loc>https://personal.iamziad.isroot.in/now/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://personal.iamziad.isroot.in/now/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://personal.iamziad.isroot.in/now/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://personal.iamziad.isroot.in/now/"/>
+  </url>
+  <url>
+    <loc>https://personal.iamziad.isroot.in/map/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://personal.iamziad.isroot.in/map/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://personal.iamziad.isroot.in/map/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://personal.iamziad.isroot.in/map/"/>
+  </url>
+  <url>
+    <loc>https://personal.iamziad.isroot.in/projects/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://personal.iamziad.isroot.in/projects/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://personal.iamziad.isroot.in/projects/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://personal.iamziad.isroot.in/projects/"/>
+  </url>
+  <url>
+    <loc>https://personal.iamziad.isroot.in/quotes/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://personal.iamziad.isroot.in/quotes/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://personal.iamziad.isroot.in/quotes/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://personal.iamziad.isroot.in/quotes/"/>
+  </url>
+  <url>
+    <loc>https://personal.iamziad.isroot.in/novels/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://personal.iamziad.isroot.in/novels/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://personal.iamziad.isroot.in/novels/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://personal.iamziad.isroot.in/novels/"/>
+  </url>
+  <url>
+    <loc>https://personal.iamziad.isroot.in/music/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://personal.iamziad.isroot.in/music/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://personal.iamziad.isroot.in/music/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://personal.iamziad.isroot.in/music/"/>
+  </url>
+</urlset>

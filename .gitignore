@@ -1,0 +1,7 @@
+# local-only secret material — must never reach the published site
+_local_ctf_tool.js
+_ctf_pack.json
+*.key
+node_modules/
+.DS_Store
+Thumbs.db

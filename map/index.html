@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet Map — Ziad Salah</title>
+<meta name="description" content="Every account Ziad Salah runs, drawn as a constellation. Code, security, work and social accounts, clustered by how they relate to each other.">
+<link rel="canonical" href="https://personal.iamziad.isroot.in/map/">
+<link rel="alternate" hreflang="en" href="https://personal.iamziad.isroot.in/map/">
+<link rel="alternate" hreflang="ar" href="https://personal.iamziad.isroot.in/map/?lang=ar">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Internet Map — Ziad Salah",
+  "url": "https://personal.iamziad.isroot.in/map/",
+  "inLanguage": ["en", "ar"],
+  "author": {"@type": "Person", "name": "Ziad Salah", "url": "https://personal.iamziad.isroot.in/"}
+}
+</script>
+</head>
+
+<body data-page="/map/">
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="chrome">
+  <a class="chrome-brand" href="/">iam<b>ziad</b></a>
+  <nav class="chrome-nav" aria-label="Main">
+    <a href="/">Home</a>
+    <a href="/now/">Now</a>
+    <a href="/map/">Internet Map</a>
+    <a href="/projects/">Projects</a>
+    <a href="/quotes/">Quotes</a>
+    <a href="/novels/">Novels</a>
+    <a href="/music/">Music</a>
+  </nav>
+  <div class="chrome-tools">
+    <button class="tgl" data-lang-btn="en" aria-pressed="true">EN</button>
+    <button class="tgl" data-lang-btn="ar" aria-pressed="false">AR</button>
+    <button class="tgl" data-theme-btn aria-label="Toggle theme">LIGHT</button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <a class="back" href="/">&larr; <span class="lang-en">home</span><span class="lang-ar">الرئيسية</span></a>
+
+  <section class="hero">
+    <p class="eyebrow"><span class="lang-en">internet map</span><span class="lang-ar">خريطة الإنترنت</span></p>
+    <h1 class="page-title"><span class="lang-en">Where I <span class="cursor">exist</span></span><span class="lang-ar">فين أنا <span class="cursor">موجود</span></span></h1>
+    <p class="lede">
+      <span class="lang-en">Every account is a dot. Bigger dot = more of my life is parked there. The lines only connect things that are genuinely the same kind of thing, which is why it looks like five separate hobbies instead of one person.</span>
+      <span class="lang-ar">كل حساب نقطة. النقطة الأكبر = حياتي كتير هناك. الخطوط اللي بتربط حاجات من نفس النوع فعلاً، عشان كده شكلها كأن دي ٥ هوايات منفصلة مش شخص واحد.</span>
+    </p>
+  </section>
+
+  <section id="map">
+    <div class="map-stage">
+      <canvas id="map-canvas" role="img" aria-label="A constellation of Ziad's accounts across the internet, grouped by category."></canvas>
+    </div>
+    <div class="map-legend">
+      <span><i style="background:var(--neon)"></i><span class="lang-en">me</span><span class="lang-ar">أنا</span></span>
+      <span><i style="background:var(--cyan)"></i><span class="lang-en">code</span><span class="lang-ar">كود</span></span>
+      <span><i style="background:var(--mag)"></i><span class="lang-en">security</span><span class="lang-ar">أمن</span></span>
+      <span><i style="background:var(--amber)"></i><span class="lang-en">work</span><span class="lang-ar">شغل</span></span>
+      <span><i style="background:var(--fg-faint)"></i><span class="lang-en">social</span><span class="lang-ar">سوشيال</span></span>
+    </div>
+    <p class="note" style="margin-top:1.2rem">
+      <span class="lang-en">The canvas is the pretty part. The list below it is the same data and it works without JavaScript motion, so use it if you would rather just read.</span>
+      <span class="lang-ar">الـ canvas هي الجزء الحلو. اللي تحته نفس البيانات بيشتغل من غير حركة، فلو بتحب تقرأ استخدمه.</span>
+    </p>
+
+    <h2 style="font-size:1rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-faint);margin-top:2.4rem">
+      <span class="lang-en">all accounts</span><span class="lang-ar">كل الحسابات</span>
+    </h2>
+    <div class="node-list" id="map-list"></div>
+  </section>
+</main>
+
+<footer class="wrap"><p>Egypt</p></footer>
+
+<script src="/assets/js/data.js"></script>
+<script src="/assets/js/app.js"></script>
+</body>
+</html>

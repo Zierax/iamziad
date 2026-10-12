@@ -1,0 +1,5 @@
+# robots.txt — personal.iamziad.isroot.in
+User-agent: *
+Allow: /
+
+Sitemap: https://personal.iamziad.isroot.in/sitemap.xml

@@ -1,0 +1,16 @@
+{
+  "name": "Ziad Salah — iamziad",
+  "short_name": "iamziad",
+  "description": "Personal site of Ziad Salah (Zierax). A person in Giza who builds small things that run and writes two Arabic novels.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08090c",
+  "theme_color": "#08090c",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/favicon.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/ziad.jpg", "sizes": "512x512", "type": "image/jpeg" }
+  ]
+}
