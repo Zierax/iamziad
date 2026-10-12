@@ -770,14 +770,40 @@ html[data-lang='en'] .ar-only { display: none !important; }
 
 @media (max-width: 640px) {
   body { font-size: 14px; }
-  .chrome { padding: .5rem .9rem; }
-  .chrome-nav { width: 100%; order: 3; margin-inline-start: 0; overflow-x: auto; }
-  .chrome-nav a { font-size: .66rem; padding: .3rem .45rem; }
-  .chrome-brand { font-size: .7rem; }
-  .hero-photo { width: 78px; height: 78px; }
-  .ctf-cell { flex-basis: 3.6rem; }
   section { padding: 2.5rem 0; }
   .card { padding: 1rem; }
+  .hero-photo { width: 78px; height: 78px; }
+  .ctf-cell { flex-basis: 3.6rem; }
+
+  /* two rows: brand + tools on top, nav scrolling underneath */
+  .chrome {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 'brand tools' 'nav nav';
+    align-items: center;
+    gap: .5rem .75rem;
+    padding: .55rem .9rem;
+  }
+  .chrome-brand { grid-area: brand; font-size: .7rem; }
+  .chrome-tools { grid-area: tools; justify-self: end; }
+  .chrome-nav {
+    grid-area: nav;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: .25rem;
+    margin: 0;
+    padding-bottom: .2rem;
+    scrollbar-width: none;
+  }
+  .chrome-nav::-webkit-scrollbar { display: none; }
+  .chrome-nav a {
+    font-size: .66rem;
+    padding: .3rem .5rem;
+    white-space: nowrap;
+    flex: none;
+  }
+  .tgl { padding: .28rem .45rem; font-size: .64rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
