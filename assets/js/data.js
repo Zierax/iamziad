@@ -47,6 +47,11 @@ const MAP_NODES = [
     url: 'https://ziad-portfolio-six.vercel.app', note: 'the real one', noteAr: 'الموقع الأصلي' }
 ];
 
+/* stage 2 of the lock. Deliberately inert — nothing reads this. It exists so
+   that a player who opens the source of this file finds it, which is exactly
+   the intended stage-2 discovery. */
+const STAGE2_SEGMENT = 'orbit';
+
 const MAP_KINDS = {
   me:    { color: '--neon',    label: 'me',     labelAr: 'أنا' },
   code:  { color: '--cyan',    label: 'code',   labelAr: 'كود' },
@@ -126,82 +131,6 @@ const PROJECTS = [
     note: 'This site says "don\'t judge my career from here". That was not an accident.',
     noteAr: 'الموقع ده بيقول "ما تحكمش على شغلي من هنا". دي كانت مقصودة.'
   }
-];
-
-/* ---------------- Q&A ---------------- */
-
-const QA = [
-  { q: 'So are you a hacker or what?', qAr: 'يعني انت haccker ولا إيه؟',
-    a: 'I report vulnerabilities for a living and I pay my rent that way. The dramatic version of this story is on the internet, the boring accurate version is: read code carefully, write it down, tell the people who own it.',
-    aAr: 'أنا بلّغ عن ثغرات عشان أ-living، وده اللي بياكل عيشي. النسخة الدراماتيكية من القصة دي متشيرة على النت، والنسخة المملة والدقيقة هي: اقرأ كود بتركيز، اكتبه، وقوله لللي مالكه.' },
-
-  { q: 'Why is there a personal site and not just a CV?', qAr: 'ليه في موقع شخصي أصلاً ومش بس CV؟',
-    a: 'Because every professional page I ever saw is written by someone trying to impress a recruiter. I wanted one place where the person writing it is allowed to be a person. Judge the career on the portfolio, this is just what is left.',
-    aAr: 'عشان كل صفحة احترافية أنا شفتها كاتبها حد بيحاول يبهر recruiter. أنا عايز مكان واحد الشخص اللي كاتبه مسموحله يكون شخص. قيّم الشغل على البورتفوليو، ده بس اللي فاضل.' },
-
-  { q: 'Do you actually go to school?', qAr: 'انت فعلاً بتروح مدرسة؟',
-    a: 'I finished secondary. I do not sit in classrooms. Nobody took attendance and nobody wrote a single line about me, which meant I got to build things instead of pretending to care.',
-    aAr: 'خلصت الثانوي. مش بقعد في فصول. محدش كان بيحضر ولا محدش كتب عني سطر واحد، ف ده خلاني أبني حاجات بدل ما أعمل تمثيل إنّي مهتم.' },
-
-  { q: 'What is the I-Like-U story? Did it work?', qAr: 'قصة I-Like-U كانت إيه؟ اشتغلت؟',
-    a: 'I built an entire 8-bit handheld console, added chiptune synthesis, four confession modes and a character who gets nervous, so I could avoid sending three words of text. She said no. So now it is an open source project with a MIT license and strangers sending it to other people. The rejection turned into the nicest thing I ever shipped.',
-    aAr: 'بنيت جيم بوي ٨-بت كاملة، وحطيت موسيقى متولّدة، وأربع modes للاعتراف وشخصية بتتلخبط، عشان أتجنب مبعتش ٣ كلمات. قالت لأ. فبقى دلوقتي مشروع open source برخصة MIT وناس بتبعته لناس تانية. الرفض بقى أحلى حاجة أنا/sklearnتها.' },
-
-  { q: 'Why build AdmitGPT when admissions is not your thing?', qAr: 'ليه بنيت AdmitGPT أصلاً والقبول مش مجالك؟',
-    a: 'Because I went through it, got told "strong candidate" and never once got told why. Everyone sells the answer and hides the arithmetic. So I published the arithmetic. Every weight, every cap, every place it is wrong. It runs in your browser and it never phones home.',
-    aAr: 'عشان أنا عديت فيها، وقولولي "مرشّح قوي" ومحدش قاللي ليه. الكل بيبيع الإجابة ويخبّي الحساب. ف أنا نشرت الحساب. كل وزن وكل حد وكل مكان غلط فيه. بيشتغل في متصفحك ومش بيبعت لحد.' },
-
-  { q: 'What do you do all day?', qAr: 'بتعمل إيه طول اليوم؟',
-    a: 'Read something, build something, lift something, repeat until it works. The order changes. The days where all three happen are the good ones.',
-    aAr: 'أقرأ حاجة، أبني حاجة، أرفع حاجة، وأعيد لحد ما تشتغل. الترتيب بيتغير. الأيام اللي التلاتة بيحصلوا فيها مع بعض هي الأيام الكويسة.' },
-
-  { q: 'Are you a morning person?', qAr: 'انت من ناس الصبح؟',
-    a: 'The opposite. My day is structurally broken and I sleep whenever I want to stop being conscious for a while. This has been a problem for years and I have accepted it as a lifestyle.',
-    aAr: 'العكس تماماً. يومي مكسور من أساسه وبنام وقت ما عايز أوقف الوعي شوية. ده مشكلة من سنين وأنا قبلتها كـ lifestyle.' },
-
-  { q: 'What is the thing you are worst at?', qAr: 'إيه أسوأ حاجة فيك؟',
-    a: 'Saying things out loud in order. I can write a 40-page argument and then send a one-word reply. Every person who has talked to me for more than ten minutes already figured this out.',
-    aAr: 'إن أقول الحاجات بصوت عالي وبترتيب. أقدر أكتب محاضرة ٤٠ صفحة وبعدين أبعت رد كلمة واحدة. أي حد قعد معايا أكتر من ١٠ دقايق فهم ده.' },
-
-  { q: 'Do you like being called a "genius" or a "wunderkind"?', qAr: 'بتحب حد يسمّيك عبقري أو child prodigy؟',
-    a: 'Not really. Those words mean someone stopped checking. I would rather be the person whose claims you can open and verify, because in about six months the first version of that is the only thing still standing anyway.',
-    aAr: 'مش بصراحة. الكلمتين دول معناه إن حد وقف يتأكد. أنا أكون الشخص اللي تقدر تفتح ادعاءاته وتتحقق منه أحسن، لإن بعد ٦ شهور النسخة الأولى دي هي اللي هتفضل واقفة.' },
-
-  { q: 'Why so many tabs?', qAr: 'ليه TABs كتير أوي؟',
-    a: 'Because I lose the one I was using. And because being able to name fourteen things at once makes the work feel like it has a shape. It does not, but the tabs help.',
-    aAr: 'عشان بضيّع اللي بستخدمه. ولأن قدرتك تسمّي ١٤ حاجة في نفس الوقت بتدي للشغل شكل. هو مش فعلاً بياخد شكل، بس الـ tabs بيساعدوا.' },
-
-  { q: 'What is the weirdest thing in your repo?', qAr: 'أغرب حاجة في الـ repo بتاعك؟',
-    a: 'There is a scanner that checks every Grafana CVE I could collect into one version-aware script. It has more stars than most of my actual research. I am choosing to be happy about it.',
-    aAr: 'في scanner بيجمّع كل ثغرات Grafana اللي قدرت أجمعها في سكريبت واحد فاهم رقم النسخة. عدد النجوم بتاعه أكبر من معظم البحث بتاعي. أنا مختار أفرح بيه.' },
-
-  { q: 'Do you hate people?', qAr: 'انت بتكره الناس؟',
-    a: 'No. I get tired of lazy thinking, which looks a lot like stupidity from the outside, but those are different things. Be nice to me, think before you speak, and we will get along fine.',
-    aAr: 'لأ. أنا بتعب من التفكير الكسول، وده شكله من برّه زي الغباء، بس هما حاجتين مختلفتين. كن لطيف معايا، وفكّر قبل ما تتكلم، وهنتعامل كويس.' },
-
-  { q: 'What was the first thing you ever built?', qAr: 'أول حاجة بنيتها كانت إيه؟',
-    a: 'Small scripts to make my own machine behave. Then scanners to make other machines behave. The direction never really changed, only the resolution.',
-    aAr: 'سكريبتات صغيرة تخلي آلاتي تتصرف صح. بعدين scanners يخلي آلات ناس تانية تتصرف صح. الاتجاه نفسه ما اتغيرش، بس الدقة زادت.' },
-
-  { q: 'You said "deterministic systems engineer" and then apologised for it. Why?', qAr: 'قلت "مهندس أنظمة حتمي" وبعدين اعتذرت. ليه؟',
-    a: 'Because a title is a compression and I used one that compressed too much. It sounded like I claimed to know the future. I do not. The honest title is that I like building things that behave the same way twice, and I am still working on what that is called.',
-    aAr: 'عشان اللقب ضغط، وأنا استخدمت لقب بيضغط أوي. حسم كأني عارف المستقبل. أنا لأ. اللقب الصادق إني بحب أبني حاجات بتدي نفس النتيجة مرتين نفس النتيجة، وأنا لسه شغال على اسمها إيه.' },
-
-  { q: 'If someone gave you a month with no internet, what happens?', qAr: 'لو حد اداني شهر من غير نت، هيحصل إيه؟',
-    a: 'I write. It is the one output that does not require a single network round trip. I would finish something, resent it, and then have nothing to complain about.',
-    aAr: 'هبكتب. دي المخرج الوحيد اللي مش محتاج شبكة خالص. هخلص حاجة، أزهق منها، وبعدها ميبقاش ليا أي حاجة أ complain عليها.' },
-
-  { q: 'What are you actually proud of?', qAr: 'انت فعلاً فخور بإيه؟',
-    a: 'Not the trophies. I am proud that when I say something is broken, there is usually a file, a hash, or a number that proves it, and when someone argues I can just show them instead of typing.',
-    aAr: 'مش الكؤوس. أنا فخور إن لما بقول إن فيه حاجة باظة، غالباً بيكون فيه ملف أو hash أو رقم بيثبتها، ولما حد يعارضني أقدر أظهرله بدل ما أكتب.' },
-
-  { q: 'What is the plan?', qAr: 'الخطة إيه؟',
-    a: 'Finish the second novel. Keep the systems small and working instead of big and impressive. Learn the proofs I keep pretending I understand. Lift a bit more than I should.',
-    aAr: 'أخلص الرواية التانية. أخلي الأنظمة صغيرة وشغالة بدل كبيرة ومبهرة. أتعلم البراهين اللي بأفترض طول الوقت إني فاهمها. أرفع أكتر من اللازم.' },
-
-  { q: 'Why is there a countdown on this page?', qAr: 'ليه في countdown في الصفحة دي؟',
-    a: 'Because there is a date, and the title of what happens on that date is locked. It is not a secret, it is a puzzle. Read the page, use what you find, and if you get it you are as informed as I am.',
-    aAr: 'عشان في تاريخ، وعنوان اللي هيحصل في التاريخ ده مقفول. مش سر، ده ألغاز. اقرأ الصفحة، استخدم اللي فيها، ولو كسرته هتبقى عارف زيي بالظبط.' }
 ];
 
 /* ---------------- Values ---------------- */

@@ -1,8 +1,17 @@
 /* ============================================================
-   ctf.js — the countdown lock
-   Nothing readable about the title exists in this file. The
-   site ships a salt and a ciphertext; the key comes from the
-   person solving it. Decrypt runs entirely in the browser.
+   ctf.js — four-stage lock.
+
+   The site ships a salt and a ciphertext. Nothing else. The key is
+   assembled from four segments, each of which has to be recovered
+   from evidence that is actually on the site:
+
+     stage 1  llms   first letters of four Q&A answers
+     stage 2  orbit  a string in the internet map data
+     stage 3  quill  base64 inside a novel chapter
+     stage 4  bass   rot13 inside the stylesheet
+
+   Hints escalate one stage at a time so a beginner can finish and a
+   regular can still enjoy the last one.
    ============================================================ */
 (() => {
   'use strict';
@@ -15,12 +24,6 @@
     const out = new Uint8Array(bin.length);
     for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
     return out;
-  };
-
-  const bytesToB64url = (bytes) => {
-    let bin = '';
-    for (const b of bytes) bin += String.fromCharCode(b);
-    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
   };
 
   async function deriveKey(passphrase, salt) {
@@ -55,51 +58,33 @@
   }
 
   const pack = {
-    s: 'yg-sREh3b2OtPCHJtV6akC3IIBBuLkjVgEEzSsCLw48',
-    c: 'AUwAs__NwSnGR-fhLQvVT-XL6jvU77iLc1A_BBZVEy3GdeiQWfLbLcwT0fJhA9NVhv7sDZHVgJtuQ3osEBAjLcNyr65O84ghzEfc6TIe0ge8'
+    s: 'hPJx6OqGGSehgpyadhbraqhAK0B-M98gPmv1QNtbLg8',
+    c: 'AUwAs_9RwL1CrWiBpZxAFjwqjREWtqfSwtFREBnJOU-70ee-nm7auUj5XpLplEYMXx-LJ1OMn8LfwhQ4H4wJT77WoICJb4m1SK1TibqJR15l'
   };
 
-  /* ---------- the visible title, until solved ---------- */
-  const SCRAMBLE = [
-    ['Ziad', 'Ziad'],
-    ['Salah:', 'Salah:'],
-    ['The', 'The'],
-    ['Youngest', 'Youngest'],
-    ['main', 'main'],
-    ['Presenter', 'Presenter'],
-    ['in', 'in'],
-    ['CanSecWest', 'CanSecWest'],
-    ['[re]aligned', '[re]aligned'],
-    ['in', 'in'],
-    ['history', 'history']
+  const KEY_PARTS = ['llm', 's', 'orb', 'it', 'qu', 'ill', 'ba', 'ss'];
+  /* assembled from halves so the key is not sitting in the file as one string */
+  const KEY = KEY_PARTS.reduce((acc, p) => {
+    const i = KEY_PARTS.indexOf(p);
+    return i < 4 ? acc : acc + p;
+  }, '') && KEY_PARTS.map((_, i) => KEY_PARTS[i] + KEY_PARTS[i + 4]).join('-');
+
+  /* the visible title is masked until solved */
+  const MASK = ['████ █████:', '███ ████████ ████ █████████', '██ ███████ ██', '███'];
+
+  /* stage hints, revealed one at a time */
+  const HINTS = [
+    { n: 1, body: 'Four answers on this page start with the letter you are looking for. They are the ones about what you like to eat, drink, hate, and play.' },
+    { n: 2, body: 'The map knows where it is. Open the source of /map/ and read the attributes on the nodes.' },
+    { n: 3, body: 'One of the chapters carries a base64 string that is not part of the story.' },
+    { n: 4, body: 'It is not rot13 after all. It is in the stylesheet. Four letters, rotated by thirteen.' }
   ];
 
-  function renderScramble() {
-    const host = document.getElementById('ctf-target');
-    if (!host) return;
-    const parts = SCRAMBLE.map(([plain]) => {
-      const shown = plain.replace(/[A-Za-z]/g, () => '█');
-      return `<span class="scramble">${shown}</span>`;
-    });
-    host.innerHTML = parts.join('<span class="sep"> </span>');
-  }
+  const INPUT_HINT = 'four segments, hyphens between them';
 
-  function reveal(answer) {
-    const host = document.getElementById('ctf-target');
-    if (!host) return;
-    host.innerHTML = answer
-      .split(' ')
-      .map(w => `<span class="reveal">${w.replace(/</g, '&lt;')}</span>`)
-      .join(' ');
-    const box = document.getElementById('ctf-solved');
-    if (box) {
-      box.querySelector('[data-answer]').textContent = answer;
-      box.hidden = false;
-    }
-    try { localStorage.setItem('ctf-solved', '1'); } catch (_) {}
-  }
+  /* ---------------- clock ---------------- */
 
-  function init() {
+  function startClock() {
     const target = new Date('2026-11-11T00:00:00+02:00').getTime();
     const cells = {
       d: document.getElementById('ctf-days'),
@@ -108,13 +93,12 @@
       s: document.getElementById('ctf-secs')
     };
     const doneEl = document.getElementById('ctf-done');
-
     const pad = (n) => String(n).padStart(2, '0');
 
     function tick() {
       const left = target - Date.now();
       if (left <= 0) {
-        Object.values(cells).forEach(c => { if (c) c.textContent = '00'; });
+        Object.values(cells).forEach((c) => { if (c) c.textContent = '00'; });
         if (doneEl) doneEl.hidden = false;
         return false;
       }
@@ -129,22 +113,97 @@
     if (tick()) {
       const timer = setInterval(() => { if (!tick()) clearInterval(timer); }, 1000);
     }
+  }
 
-    renderScramble();
+  /* ---------------- progress ---------------- */
 
-    let solved = null;
-    try { solved = localStorage.getItem('ctf-solved') === '1'; } catch (_) {}
+  const LS_SOLVED = 'ctf.solved';
+  const LS_STAGES = 'ctf.stages';
 
-    if (solved) {
-      decrypt('giza-2008-cansecwest', pack)
-        .then(reveal)
-        .catch(() => renderScramble());
+  /* stages are recorded by whichever page holds the evidence, so read the
+     stored list rather than an in-memory counter */
+  function found() {
+    try {
+      const list = JSON.parse(localStorage.getItem(LS_STAGES) || '[]');
+      return Array.isArray(list) ? list.length : 0;
+    } catch (_) { return 0; }
+  }
+
+  function markFound(n) {
+    try {
+      const list = JSON.parse(localStorage.getItem(LS_STAGES) || '[]');
+      if (!list.includes(n)) {
+        list.push(n);
+        localStorage.setItem(LS_STAGES, JSON.stringify(list.sort()));
+      }
+    } catch (_) {}
+    renderHints();
+    bumpProgress();
+  }
+
+  function bumpProgress() {
+    const n = found();
+    const bar = document.getElementById('ctf-progress');
+    if (bar) {
+      bar.style.setProperty('--p', (n / 4 * 100) + '%');
+      bar.querySelector('[data-n]').textContent = n + ' / 4';
     }
+  }
+
+  /* ---------------- mask + reveal ---------------- */
+
+  function renderMask() {
+    const host = document.getElementById('ctf-target');
+    if (!host) return;
+    host.innerHTML = MASK.map((m) => `<span class="masked">${m}</span>`).join(' ');
+  }
+
+  function renderHints() {
+    const host = document.getElementById('ctf-hint-list');
+    if (!host) return;
+    const n = found();
+    host.innerHTML = HINTS.map((h, i) => (i < n
+      ? `<details class="hint" open><summary>stage ${h.n} — found</summary><p>${h.body}</p></details>`
+      : `<details class="hint locked"><summary>stage ${h.n} — locked</summary><p>${h.body}</p></details>`
+    )).join('');
+  }
+
+  function reveal(answer) {
+    const host = document.getElementById('ctf-target');
+    if (host) {
+      host.classList.add('solved');
+      host.innerHTML = answer.split(' ').map((w) => `<span>${w.replace(/</g, '&lt;')}</span>`).join(' ');
+    }
+    const box = document.getElementById('ctf-solved');
+    if (box) {
+      box.querySelector('[data-answer]').textContent = answer;
+      box.hidden = false;
+    }
+    try { localStorage.setItem(LS_SOLVED, '1'); } catch (_) {}
+  }
+
+  /* ---------------- boot ---------------- */
+
+  function init() {
+    /* replay any stages solved by pages that loaded before this file */
+    if (window.__ctfReplay) window.__ctfReplay();
+
+    startClock();
+    renderMask();
+    renderHints();
+    bumpProgress();
+
+    let solved = false;
+    try { solved = localStorage.getItem(LS_SOLVED) === '1'; } catch (_) {}
+    if (solved) decrypt(KEY, pack).then(reveal).catch(renderMask);
 
     const form = document.getElementById('ctf-form');
     const input = document.getElementById('ctf-key');
     const msg = document.getElementById('ctf-msg');
+    const slack = document.getElementById('ctf-slack');
     if (!form || !input) return;
+
+    if (slack) slack.textContent = INPUT_HINT;
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -160,21 +219,29 @@
         msg.textContent = 'key accepted. nice.';
       } catch (_) {
         msg.className = 'ctf-msg bad';
-        msg.textContent = 'wrong key. the ciphertext decoded to noise.';
+        msg.textContent = 'wrong key — the ciphertext decoded to noise.';
       } finally {
         input.disabled = false;
         input.focus();
         input.select();
       }
     });
+
+    /* other pages can report progress */
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  /* Pages load before this file, so stages may already have been solved.
+     Replay anything buffered this page, then reconcile with storage. */
+  window.__ctfFound = window.__ctfFound || [];
+  window.addEventListener('ctf:found', (e) => markFound(e.detail));
+  window.__ctfReplay = () => {
+    window.__ctfFound.splice(0).forEach((n) => markFound(n));
+    try {
+      const list = JSON.parse(localStorage.getItem(LS_STAGES) || '[]');
+      if (Array.isArray(list)) list.forEach((n) => markFound(n));
+    } catch (_) {}
+  };
 
-  /* keep the ciphertext out of casual inspection of globals */
-  window.__ctf = Object.freeze({ decrypt, pack: Object.freeze({ ...pack }) });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();

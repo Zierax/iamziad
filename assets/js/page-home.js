@@ -1,16 +1,22 @@
-/* page-home.js — renders the Q&A and values lists on the home page. */
+/* ============================================================
+   page-home.js — renders the Q&A and values lists on the home page.
+   ============================================================ */
 (() => {
   'use strict';
 
-  const esc = (s) => String(s).replace(/[&<>"]/g, m => (
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, m => (
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]
   ));
+
+  /* stage 1 of the lock: these four answers open with l, l, m, s.
+     The dot is visible but subtle; the hint names the categories. */
+  const STAGE1 = new Set([3, 4, 5, 8]);
 
   function renderQa() {
     const host = document.getElementById('qa-list');
     if (!host || typeof QA === 'undefined') return;
     host.innerHTML = QA.map((item, i) => `
-      <article class="qa-item${i < 3 ? ' fresh' : ''}">
+      <article class="qa-item${STAGE1.has(i + 1) ? ' stage1' : ''}" id="qa-${i + 1}">
         <p class="qa-q">
           <span class="lang-en"><span class="q-tag">[Q]</span>${esc(item.q)}</span>
           <span class="lang-ar"><span class="q-tag">[س]</span>${esc(item.qAr)}</span>
@@ -20,6 +26,12 @@
           <span class="lang-ar"><span class="a-tag">[ج]</span>${esc(item.aAr)}</span>
         </p>
       </article>`).join('');
+
+    /* stage 1: those four answers open with l, l, m, s */
+    const letters = [3, 4, 5, 8].map((n) => (QA[n - 1].a || '').trim().charAt(0).toLowerCase()).join('');
+    const el = document.getElementById('stage1');
+    if (el) el.dataset.segment = letters;
+    if (letters === 'llms') if (window.ctfFound) window.ctfFound(1);
   }
 
   function renderValues() {

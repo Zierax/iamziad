@@ -60,8 +60,9 @@
 
   function boot() {
     /* pre-paint theme so there is no flash */
-    let theme = 'dark';
-    try { theme = localStorage.getItem(LS_THEME) || 'dark'; } catch (_) {}
+    /* the default look is the warm paper one; dark is opt-in */
+    let theme = 'light';
+    try { theme = localStorage.getItem(LS_THEME) || 'light'; } catch (_) {}
     applyTheme(theme);
 
     let lang = 'en';
@@ -296,10 +297,15 @@
           <span>
             <b><span class="lang-en">${n.label}</span><span class="lang-ar">${n.label}</span></b>
             <span class="handle">${n.handle}</span>
-            ${n.note ? `<span class="lang-en">${n.note}</span><span class="lang-ar">${n.noteAr || n.note}</span>` : ''}
+            ${n.note ? `<small><span class="lang-en">${n.note}</span><span class="lang-ar">${n.noteAr || n.note}</span></small>` : ''}
           </span>
           <span class="tag">${(MAP_KINDS[n.kind] || {}).label || n.kind}</span>
         </a>`).join('');
+    }
+
+    /* stage 2 of the lock: the segment was sitting in this file all along */
+    if (typeof STAGE2_SEGMENT === 'string' && STAGE2_SEGMENT === 'orbit') {
+      if (window.ctfFound) window.ctfFound(2);
     }
   }
 

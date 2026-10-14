@@ -56,6 +56,23 @@
     if (!tabs || !panels) return;
     if (typeof NOVEL_INDEX === 'undefined' || typeof NOVEL_TEXT === 'undefined') return;
 
+    /* stage 3 of the lock: something in the prose is not prose.
+       Buffer does not exist in the page, so decode base64url by hand. */
+    (() => {
+      const fromB64url = (x) => {
+        try {
+          const s = x.replace(/-/g, '+').replace(/_/g, '/');
+          return decodeURIComponent(escape(atob(s + '='.repeat((4 - s.length % 4) % 4))));
+        } catch (_) { return ''; }
+      };
+      for (const id of Object.keys(NOVEL_TEXT)) {
+        for (const ch of NOVEL_TEXT[id].chapters) {
+          const m = String(ch.en || '').match(/\[([A-Za-z0-9_-]{4,})\]/);
+          if (m && fromB64url(m[1]) === 'quill' && window.ctfFound) { window.ctfFound(3); return; }
+        }
+      }
+    })();
+
     tabs.innerHTML = NOVEL_INDEX.map((n, i) => `
       <button class="tab-btn${i === 0 ? ' active' : ''}" data-tab="${n.id}">
         <span class="lang-en">${esc(n.title)}</span><span class="lang-ar">${esc(n.titleAr)}</span>
