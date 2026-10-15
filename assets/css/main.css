@@ -817,6 +817,16 @@ html[dir='rtl'] .ticker-track { animation-name: tickR; }
 .spk.s3 { top: 46%; inset-inline-end: 14%; font-size: .9rem; color: var(--sky-dk); animation-delay: 2s; }
 html[data-theme='dark'] .spk { animation: none; opacity: .5; }
 
+/* the resident: a chubby kitty guarding the game-boy project */
+.pet {
+  position: fixed; bottom: 1.1rem; inset-inline-end: 1.1rem; z-index: 90;
+  font-size: 2rem; line-height: 1; text-decoration: none;
+  filter: drop-shadow(2px 2px 0 var(--line));
+  animation: petbob 3s ease-in-out infinite;
+}
+@keyframes petbob { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-8px) rotate(6deg); } }
+.pet:hover { animation: wiggle .3s ease-in-out 2; }
+
 /* a few more cards sit crooked, on purpose */
 blockquote:nth-child(3n), .music-item:nth-child(3n),
 .chapter:nth-child(even), .node-row:nth-child(odd) { transform: rotate(-.35deg); }
@@ -968,6 +978,7 @@ html[data-lang='en'] .lang-ar { display: none !important; }
 
 @media (max-width: 900px) {
   main > section::after { display: none; }
+  .doodle { display: none; }
 }
 
 @media (max-width: 640px) {
