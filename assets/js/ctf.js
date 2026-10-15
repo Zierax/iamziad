@@ -62,12 +62,9 @@
     c: 'AUwAs_9RwL1CrWiBpZxAFjwqjREWtqfSwtFREBnJOU-70ee-nm7auUj5XpLplEYMXx-LJ1OMn8LfwhQ4H4wJT77WoICJb4m1SK1TibqJR15l'
   };
 
-  const KEY_PARTS = ['llm', 's', 'orb', 'it', 'qu', 'ill', 'ba', 'ss'];
+  const KEY_PARTS = [['llm', 's'], ['orb', 'it'], ['qu', 'ill'], ['ba', 'ss']];
   /* assembled from halves so the key is not sitting in the file as one string */
-  const KEY = KEY_PARTS.reduce((acc, p) => {
-    const i = KEY_PARTS.indexOf(p);
-    return i < 4 ? acc : acc + p;
-  }, '') && KEY_PARTS.map((_, i) => KEY_PARTS[i] + KEY_PARTS[i + 4]).join('-');
+  const KEY = KEY_PARTS.map((p) => p[0] + p[1]).join('-');
 
   /* the visible title is masked until solved */
   const MASK = ['████ █████:', '███ ████████ ████ █████████', '██ ███████ ██', '███'];

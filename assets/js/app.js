@@ -60,9 +60,9 @@
 
   function boot() {
     /* pre-paint theme so there is no flash */
-    /* the default look is the warm paper one; dark is opt-in */
-    let theme = 'light';
-    try { theme = localStorage.getItem(LS_THEME) || 'light'; } catch (_) {}
+    /* the default look is the dark pixel board; light is opt-in */
+    let theme = 'dark';
+    try { theme = localStorage.getItem(LS_THEME) || 'dark'; } catch (_) {}
     applyTheme(theme);
 
     let lang = 'en';
