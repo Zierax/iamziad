@@ -567,7 +567,19 @@ html[data-theme='dark'] .doodle { color: var(--tang); }
 .qa-item {
   border: 3px solid var(--line); border-radius: 20px;
   background: var(--bg-2); box-shadow: var(--pop);
-  overflow: hidden;
+  overflow: hidden; position: relative;
+}
+/* washi tape stuck on each answer card, alternating corners */
+.qa-item::before {
+  content: ''; position: absolute; top: -11px; inset-inline-start: 26px; z-index: 2;
+  width: 74px; height: 22px;
+  background: rgba(255, 210, 31, .5);
+  border-inline: 2px dashed rgba(38, 35, 61, .3);
+  transform: rotate(-4deg); pointer-events: none;
+}
+.qa-item:nth-child(even)::before {
+  inset-inline-start: auto; inset-inline-end: 26px;
+  transform: rotate(5deg); background: rgba(53, 196, 255, .4);
 }
 .qa-item:nth-child(odd) { transform: rotate(-.3deg); }
 .qa-item:nth-child(even) { transform: rotate(.3deg); }
@@ -798,6 +810,24 @@ blockquote:nth-child(even) .quote-author { color: var(--ink); }
 html[dir='rtl'] .ticker-track { animation-name: tickR; }
 @keyframes tickR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
+/* scattered doodads: deliberate randomness */
+.spk { position: absolute; pointer-events: none; animation: twinkle 3.4s ease-in-out infinite; z-index: 0; }
+.spk.s1 { top: 4%; inset-inline-end: 6%; font-size: 1.3rem; color: var(--tang); transform: rotate(14deg); }
+.spk.s2 { bottom: 8%; inset-inline-start: 4%; font-size: 1rem; color: var(--grape); transform: rotate(-10deg); animation-delay: 1.1s; }
+.spk.s3 { top: 46%; inset-inline-end: 14%; font-size: .9rem; color: var(--sky-dk); animation-delay: 2s; }
+html[data-theme='dark'] .spk { animation: none; opacity: .5; }
+
+/* a few more cards sit crooked, on purpose */
+blockquote:nth-child(3n), .music-item:nth-child(3n),
+.chapter:nth-child(even), .node-row:nth-child(odd) { transform: rotate(-.35deg); }
+blockquote:nth-child(4n), .music-item:nth-child(4n) { transform: rotate(.35deg); }
+
+/* handwritten aside on the lock */
+.doodle.lock-note {
+  top: 58px; inset-inline-start: auto; inset-inline-end: 6%;
+  transform: rotate(4deg); font-size: 1.5rem;
+}
+
 /* ---------------- social / footer ---------------- */
 
 .social { display: flex; flex-wrap: wrap; gap: .6rem; }
@@ -862,35 +892,35 @@ footer > .wrap > p:last-child::before, footer > p:last-child::before {
 /* ---------------- night arcade : dark variant ---------------- */
 
 html[data-theme='dark'] {
-  --bg:      #1d1a33;
-  --bg-2:    #28244a;
-  --bg-3:    #141126;
-  --ink:     #f2efff;
-  --ink-2:   #c9c4e8;
-  --muted:   #8f89b8;
-  --line:    #f2efff;
-  --shadow:  #0e0c1d;
-  --tang:    #ff8c42;
-  --tang-dk: #ffb37a;
-  --sun:     #ffd21f;
-  --grape:   #a78bfa;
-  --grape-dk:#c4b0ff;
-  --sky:     #5fd4ff;
-  --sky-dk:  #5fd4ff;
-  --mint:    #4ade80;
-  --mint-dk: #4ade80;
-  --cherry:  #ff6b7a;
-  --cherry-dk:#ff6b7a;
+  --bg:      #171422;
+  --bg-2:    #201c33;
+  --bg-3:    #100e1c;
+  --ink:     #e6e2f2;
+  --ink-2:   #b3aedd;
+  --muted:   #7e78a3;
+  --line:    #d9d4e8;
+  --shadow:  #0a0812;
+  --tang:    #d97b2f;
+  --tang-dk: #e89b5a;
+  --sun:     #c9a227;
+  --grape:   #9a86d6;
+  --grape-dk:#b3a3e8;
+  --sky:     #4aa8c7;
+  --sky-dk:  #6fc0dd;
+  --mint:    #57b47e;
+  --mint-dk: #57b47e;
+  --cherry:  #d45764;
+  --cherry-dk:#d45764;
   --neon:    #ff8c42;
   --good:    #4ade80;
   --bad:     #ff6b7a;
 
-  --cyan:    #5fd4ff;
-  --mag:     #a78bfa;
-  --amber:   #ffb37a;
+  --cyan:    #4aa8c7;
+  --mag:     #9a86d6;
+  --amber:   #e89b5a;
 
-  --fg:       #f2efff;
-  --fg-faint: #8f89b8;
+  --fg:       #e6e2f2;
+  --fg-faint: #7e78a3;
 
   --paper:   var(--bg);
   --paper-2: var(--bg-2);
@@ -899,7 +929,11 @@ html[data-theme='dark'] {
 html[data-theme='dark'] body {
   background-image: radial-gradient(rgba(242, 239, 255, 0.10) 1.4px, transparent 1.5px);
 }
-html[data-theme='dark'] .chrome { background: rgba(29, 26, 51, .94); }
+html[data-theme='dark'] .chrome { background: rgba(23, 20, 34, .94); }
+html[data-theme='dark'] .chrome-tools::before { box-shadow: none; animation: none; }
+html[data-theme='dark'] body[data-page="/"] main > section::before { opacity: .07; }
+html[data-theme='dark'] .lock::before { animation: none; }
+html[data-theme='dark'] .ticker { background: var(--bg-3); }
 html[data-theme='dark'] a { color: var(--tang); }
 html[data-theme='dark'] ::selection { color: var(--ink); }
 html[data-theme='dark'] .hero-name .last { color: var(--ink); }
