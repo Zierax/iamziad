@@ -46,6 +46,7 @@
 
   --font-px: 'Silkscreen', 'Cairo', monospace;
   --font: 'Nunito', 'Cairo', system-ui, sans-serif;
+  --font-hand: 'Caveat', 'Cairo', cursive;
   --font-ar: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
   --font-term: 'VT323', 'Cairo', ui-monospace, monospace;
   --mono: 'VT323', ui-monospace, 'Consolas', monospace;
@@ -78,6 +79,15 @@ body {
 }
 
 img, video, canvas { image-rendering: auto; }
+
+/* custom star cursor, straight from the arcade */
+body {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26'><polygon points='13,2 16.5,9.5 24.5,9.5 18,14.5 20,22.5 13,18 6,22.5 8,14.5 1.5,9.5 9.5,9.5' fill='%23ffd21f' stroke='%2326233d' stroke-width='2' stroke-linejoin='round'/></svg>") 13 13, auto;
+}
+a, button, summary, .btn, .tgl, .tab-btn, .lang-pair button, .proj, .qa-item, .node-row {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'><polygon points='15,2 19,11 28,11 21,16.5 23.5,26 15,20.5 6.5,26 9,16.5 2,11 11,11' fill='%23ff7a1f' stroke='%2326233d' stroke-width='2' stroke-linejoin='round'/></svg>") 15 15, pointer;
+}
+.key-form input, input, textarea { cursor: text; }
 
 html[data-lang='ar'] body { font-family: var(--font-ar); line-height: 2; }
 html[data-lang='ar'] h1, html[data-lang='ar'] h2, html[data-lang='ar'] h3, html[data-lang='ar'] h4,
@@ -193,6 +203,22 @@ main { padding-bottom: 5rem; counter-reset: lvl; }
 section { padding: 3rem 0; position: relative; }
 section + section { border-top: 3px dashed rgba(38, 35, 61, .25); }
 
+/* giant ghost words behind each home room */
+body[data-page="/"] main > section { overflow: clip; }
+body[data-page="/"] main > section::before {
+  position: absolute; top: .6rem; inset-inline-end: 0; z-index: 0;
+  font-family: var(--font-px); font-weight: 700;
+  font-size: clamp(3rem, 11vw, 5.5rem); line-height: 1;
+  color: transparent; -webkit-text-stroke: 2px var(--line);
+  opacity: .13; pointer-events: none; white-space: nowrap;
+}
+body[data-page="/"] #lock::before { content: 'LOCK'; }
+body[data-page="/"] #qa::before { content: 'Q+A'; }
+body[data-page="/"] #values::before { content: 'MINE'; }
+body[data-page="/"] #numbers::before { content: 'NUM!'; }
+body[data-page="/"] #links::before { content: 'LINK'; }
+body[data-page="/"] main > section > * { position: relative; z-index: 1; }
+
 /* star bullets marking every room of the page */
 main > section::after {
   content: '★'; position: absolute; top: 3.1rem;
@@ -270,14 +296,28 @@ p:last-child { margin-bottom: 0; }
   border-radius: 10px; padding: .15rem .55rem; box-shadow: 2px 2px 0 var(--shadow);
   animation: heartbeat 1.8s ease-in-out infinite;
 }
-/* sunny focus brackets around the portrait */
+/* scotch tape holding the portrait, like a good cartridge */
 .avatar::before, .avatar::after {
-  content: ''; position: absolute; width: 24px; height: 24px; z-index: 2;
-  border: 4px solid var(--sun); pointer-events: none;
-  filter: drop-shadow(1px 1px 0 var(--line));
+  content: ''; position: absolute; width: 66px; height: 22px; z-index: 2;
+  background: rgba(255, 210, 31, .55);
+  border-inline: 2px dashed rgba(38, 35, 61, .35);
+  pointer-events: none;
 }
-.avatar::before { top: -10px; inset-inline-start: -10px; border-inline-end: 0; border-bottom: 0; border-radius: 8px 0 0 0; }
-.avatar::after { bottom: -10px; inset-inline-end: -10px; border-inline-start: 0; border-top: 0; border-radius: 0 0 8px 0; }
+.avatar::before { top: -12px; inset-inline-start: 12px; transform: rotate(-8deg); }
+.avatar::after { bottom: -12px; inset-inline-end: 12px; transform: rotate(6deg); }
+html[data-theme='dark'] .avatar::before, html[data-theme='dark'] .avatar::after {
+  background: rgba(255, 210, 31, .35);
+}
+
+/* handwritten doodle pointing at the guy */
+.hero-id { position: relative; }
+.doodle {
+  position: absolute; top: -38px; inset-inline-start: 132px;
+  font-family: var(--font-hand); font-size: 1.7rem; font-weight: 700;
+  color: var(--tang-dk); transform: rotate(-5deg); white-space: nowrap;
+  pointer-events: none;
+}
+html[data-theme='dark'] .doodle { color: var(--tang); }
 
 .hero-name { font-size: clamp(1.6rem, 5vw, 2.5rem); margin: 0 0 .2rem; }
 .hero-name .last {
@@ -402,6 +442,14 @@ p:last-child { margin-bottom: 0; }
   background: transparent; color: #fff;
   font-family: var(--font-px);
   font-weight: 700; font-size: .66rem;
+  position: relative;
+}
+/* coin slot on the console */
+.lock-head::after {
+  content: '● COIN'; font-size: .58rem; letter-spacing: .06em;
+  background: #101018; color: var(--sun);
+  border: 2.5px solid var(--line); border-radius: 999px;
+  padding: .2rem .6rem;
 }
 .lock-head .live {
   display: inline-flex; align-items: center; gap: .45rem;
@@ -805,6 +853,11 @@ footer > .wrap > p:last-child::before, footer > p:last-child::before {
 /* signing off */
 .thanks { font-family: var(--font-px); font-size: .66rem; font-weight: 700; color: var(--tang-dk); margin-top: .8rem; }
 .thanks::after { content: ' ▌'; animation: blinkCursor 1s steps(1) infinite; }
+.hiscore {
+  font-family: var(--font-px); font-size: .62rem; font-weight: 700;
+  color: var(--ink-2); margin-top: .4rem;
+}
+.hiscore b { color: var(--tang-dk); }
 
 /* ---------------- night arcade : dark variant ---------------- */
 
@@ -885,6 +938,7 @@ html[data-lang='en'] .lang-ar { display: none !important; }
 
 @media (max-width: 640px) {
   body { font-size: 16px; }
+  .doodle { display: none; }
   section { padding: 2.5rem 0; }
   .card { padding: 1.1rem; }
   .hero-photo { width: 84px; height: 84px; }
