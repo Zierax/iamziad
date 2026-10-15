@@ -108,7 +108,7 @@
     });
   }
 
-  const currentTheme = () => document.documentElement.getAttribute('data-theme') || 'dark';
+  const currentTheme = () => document.documentElement.getAttribute('data-theme') || 'light';
 
   /* ============================================================
      Internet Map — a small force-directed constellation.
@@ -120,7 +120,7 @@
   function initMap() {
     const canvas = document.getElementById('map-canvas');
     const list = document.getElementById('map-list');
-    if (!canvas || !typeof MAP_NODES === 'undefined') return;
+    if (!canvas || typeof MAP_NODES === 'undefined') return;
 
     const ctx = canvas.getContext('2d');
     const dpr = Math.min(window.devicePixelRatio || 1, 2);

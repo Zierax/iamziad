@@ -618,7 +618,7 @@ html[data-theme='dark'] .doodle { color: var(--tang); }
 .value-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
 .value-list li {
   border: 3px solid var(--line); border-radius: 20px;
-  background: var(--bg-2); padding: 1.1rem 1.2rem 1.1rem 3.2rem; box-shadow: var(--pop);
+  background: var(--bg-2); padding: 1.1rem 1.2rem; padding-inline-start: 3.2rem; box-shadow: var(--pop);
   position: relative;
 }
 .value-list li:nth-child(odd) { transform: rotate(-.3deg); }
@@ -878,6 +878,8 @@ footer > .wrap > p:last-child::before, footer > p:last-child::before {
   text-decoration: none;
 }
 .back:hover { transform: translate(-1px, -1px) rotate(-1deg); color: var(--tang-dk); text-decoration: none; }
+/* the arrow flips in RTL, the word does not */
+html[dir='rtl'] .dir-arrow { display: inline-block; transform: scaleX(-1); }
 
 .toast {
   position: fixed; inset-inline: 0; bottom: 1.4rem; margin: 0 auto;

@@ -211,6 +211,8 @@
       input.disabled = true;
       try {
         const answer = await decrypt(value, pack);
+        /* a correct full key proves all four segments at once */
+        [1, 2, 3, 4].forEach(markFound);
         reveal(answer);
         msg.className = 'ctf-msg ok';
         msg.textContent = 'key accepted. nice.';
