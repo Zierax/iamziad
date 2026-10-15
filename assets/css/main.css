@@ -268,6 +268,10 @@ p:last-child { margin-bottom: 0; }
 }
 .press-start:hover { color: var(--grn); }
 
+/* fake shell line signing off the page */
+.boot { font-family: var(--font-term); font-size: 1.1rem; color: var(--grn); margin-top: .8rem; }
+.boot::after { content: '▌'; animation: blinkCursor 1s steps(1) infinite; }
+
 .btn {
   display: inline-block;
   font-family: var(--font-px); font-weight: 700; font-size: .72rem;
@@ -800,6 +804,48 @@ html[dir='rtl'] .ticker-track { animation-name: tickR; }
 }
 .proj:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 #000, 0 0 24px rgba(166, 255, 63, .15); }
 .qa-item:hover { transform: translate(-1px, -1px); }
+
+/* bolted panels: rivets in the four corners */
+.card, .lock, .proj, .chapter, .qa-item, .music-item, .now-cell, blockquote {
+  background-image:
+    radial-gradient(circle, color-mix(in srgb, var(--line) 50%, transparent) 1.6px, transparent 2.2px),
+    radial-gradient(circle, color-mix(in srgb, var(--line) 50%, transparent) 1.6px, transparent 2.2px),
+    radial-gradient(circle, color-mix(in srgb, var(--line) 50%, transparent) 1.6px, transparent 2.2px),
+    radial-gradient(circle, color-mix(in srgb, var(--line) 50%, transparent) 1.6px, transparent 2.2px);
+  background-position: 7px 7px, calc(100% - 7px) 7px, 7px calc(100% - 7px), calc(100% - 7px) calc(100% - 7px);
+  background-repeat: no-repeat;
+}
+
+/* CLASSIFIED stamp slapped across the lock corner */
+.lock { position: relative; }
+.lock::before {
+  content: 'TOP SECRET'; position: absolute; z-index: 3;
+  top: 22px; inset-inline-end: -38px; transform: rotate(35deg);
+  font-family: var(--font-px); font-size: .6rem; font-weight: 700; letter-spacing: .12em;
+  color: var(--red); border: 3px double var(--red); border-radius: 2px;
+  padding: .25rem .8rem; opacity: .9; pointer-events: none;
+  background: rgba(11, 14, 20, .55);
+}
+html[dir='rtl'] .lock::before { transform: rotate(-35deg); }
+html[data-theme='light'] .lock::before { background: rgba(242, 238, 225, .6); }
+
+/* camera-focus brackets around the portrait */
+.avatar::before, .avatar::after {
+  content: ''; position: absolute; width: 22px; height: 22px; z-index: 2;
+  border: 3px solid var(--grn); pointer-events: none;
+}
+.avatar::before { top: -8px; inset-inline-start: -8px; border-inline-end: 0; border-bottom: 0; }
+.avatar::after { bottom: -8px; inset-inline-end: -8px; border-inline-start: 0; border-top: 0; }
+
+/* nav flicker on hover */
+.chrome-nav a:hover { animation: flick .22s steps(2) 2; }
+@keyframes flick { 50% { opacity: .35; } }
+
+/* crosshair over the star map */
+.map-stage, .map-stage canvas { cursor: crosshair; }
+
+/* achievement star on the solved box */
+.lock-done b::before { content: '★ '; }
 
 /* ---------------- light variant : field manual ----------------
    Sun-faded manual page by day, phosphor dungeon by night. */
