@@ -30,6 +30,7 @@
 <meta name="twitter:creator" content="@Zierax_x">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("iam.theme")||"light")}catch(_){}</script>
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.json">
@@ -157,6 +158,7 @@
             <span class="lang-en">The blob is XOR against a PBKDF2-SHA256 key, then deflated. Nothing useful is stored here — recovering the key is the whole point. Four segments, hyphens between them.</span>
             <span class="lang-ar">البيانات XOR مع مفتاح PBKDF2-SHA256، بعدين مضغوطة. مفيش حاجة مفيدة متخزّنة هنا — استرجاع المفتاح هو المسألة كلها. ٤ قطع، مفصولين بـ hyphens.</span>
           </p>
+          <p class="slack" id="ctf-slack"></p>
           <form class="key-form" id="ctf-form" autocomplete="off">
             <input id="ctf-key" name="key" type="text" spellcheck="false" placeholder="segment-segment-segment-segment" aria-label="Key">
             <button class="btn hot" type="submit"><span class="lang-en">decrypt</span><span class="lang-ar">فك التشفير</span></button>
