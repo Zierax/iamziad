@@ -312,9 +312,9 @@ html[data-theme='dark'] .avatar::before, html[data-theme='dark'] .avatar::after 
 /* handwritten doodle pointing at the guy */
 .hero-id { position: relative; }
 .doodle {
-  position: absolute; top: -38px; inset-inline-start: 132px;
+  position: absolute; top: -42px; inset-inline-end: 2%;
   font-family: var(--font-hand); font-size: 1.7rem; font-weight: 700;
-  color: var(--tang-dk); transform: rotate(-5deg); white-space: nowrap;
+  color: var(--tang-dk); transform: rotate(3deg); white-space: nowrap;
   pointer-events: none;
 }
 html[data-theme='dark'] .doodle { color: var(--tang); }
