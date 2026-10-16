@@ -7,26 +7,43 @@
   ));
 
   const fmt = (raw) => esc(raw)
-    .replace(/\n+---\n+/g, '<hr>')
+    .replace(/\n+---\n+/g, '\u0001')
+    .split('\n')
+    .map(line => {
+      /* latin-only lines (the English epigraphs) keep their own direction */
+      const t = line.trim();
+      return (t && t !== '\u0001' && /^[«»'(),.:;!?A-Za-z0-9 \-—]+$/.test(t))
+        ? `<bdi>${line}</bdi>` : line;
+    })
+    .join('\n')
+    .replace(/\u0001/g, '<hr>')
     .replace(/\n/g, '<br>');
 
 /* paths in the data are already repo-relative, e.g. "assets/x.png" */
   const mediaSrc = (raw) => '/' + String(raw).replace(/^\/+/, '');
 
   function chapterHtml(novelId, ch, i) {
+    const cap = `<figcaption><span class="lang-en">${esc(ch.title)}</span><span class="lang-ar">${esc(ch.titleAr)}</span></figcaption>`;
     const media = ch.video
-      ? `<div class="chapter-media"><video controls preload="metadata" playsinline><source src="${esc(mediaSrc(ch.video))}" type="video/mp4"></video></div>`
+      ? `<div class="chapter-media"><figure class="chapter-fig"><video controls preload="metadata" playsinline><source src="${esc(mediaSrc(ch.video))}" type="video/mp4"></video>${cap}</figure></div>`
       : ch.image
-        ? `<div class="chapter-media"><img src="${esc(mediaSrc(ch.image))}" alt="${esc(ch.title)}" loading="lazy"></div>`
+        ? `<div class="chapter-media"><figure class="chapter-fig"><img src="${esc(mediaSrc(ch.image))}" alt="${esc(ch.title)}" loading="lazy">${cap}</figure></div>`
         : '';
 
     const music = ch.music
       ? `<div class="chapter-media">
-           <div class="music-item">
-             <h4>${esc(ch.music.name)}</h4>
-             <div class="sub">${esc(ch.music.nameEn)}</div>
-             <iframe src="https://drive.google.com/file/d/${esc(ch.music.driveId)}/preview"
-                     width="100%" height="80" frameborder="0" allow="autoplay" loading="lazy"></iframe>
+           <div class="music-card">
+             <div class="music-head">
+               <span class="music-glyph" aria-hidden="true">♪</span>
+               <div class="music-names">
+                 <span class="lang-ar">${esc(ch.music.name)}</span>
+                 <span class="lang-en">${esc(ch.music.nameEn)}</span>
+               </div>
+             </div>
+             <audio controls preload="metadata" src="https://drive.google.com/uc?export=download&id=${esc(ch.music.driveId)}"></audio>
+             <a class="music-open" href="https://drive.google.com/file/d/${esc(ch.music.driveId)}/view" target="_blank" rel="noopener">
+               <span class="lang-en">open on Drive</span><span class="lang-ar">افتح على درايف</span> ↗
+             </a>
            </div>
          </div>`
       : '';
@@ -43,10 +60,10 @@
             <button data-lang="en">EN</button>
           </div>
         </div>
+        ${media}
+        ${music}
         <div class="chapter-text" data-lang="ar" dir="rtl">${fmt(ch.ar)}</div>
         <div class="chapter-text" data-lang="en" hidden>${fmt(ch.en)}</div>
-        ${music}
-        ${media}
       </article>`;
   }
 
@@ -120,6 +137,21 @@
           btn.classList.add('on');
           texts.forEach(t => { t.hidden = t.dataset.lang !== btn.dataset.lang; });
         });
+      });
+    });
+
+    /* if Drive refuses direct playback, fall back to the embedded player */
+    panels.querySelectorAll('.music-card audio').forEach(a => {
+      a.addEventListener('error', () => {
+        const card = a.closest('.music-card');
+        if (!card || card.querySelector('iframe')) return;
+        const id = new URL(a.src).searchParams.get('id');
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://drive.google.com/file/d/' + id + '/preview';
+        iframe.width = '100%'; iframe.height = '80'; iframe.loading = 'lazy';
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'autoplay');
+        a.replaceWith(iframe);
       });
     });
   }
