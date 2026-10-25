@@ -9,6 +9,19 @@
   const LS_LANG = 'iam.lang';
   const LS_THEME = 'iam.theme';
 
+  /* page titles per language — the EN one is whatever the HTML shipped with */
+  const TITLE_EN = document.title;
+  const TITLES_AR = {
+    '/': 'زياد صلاح (Zierax) — شخص في الجيزة بيعمل حاجات',
+    '/now/': 'الآن — زياد صلاح',
+    '/map/': 'خريطة الإنترنت — زياد صلاح',
+    '/projects/': 'مشاريع — زياد صلاح',
+    '/quotes/': 'مقولات — زياد صلاح',
+    '/novels/': 'روايات — زياد صلاح',
+    '/music/': 'موسيقى — زياد صلاح',
+    '/404/': 'الصفحة دي مش موجودة — زياد صلاح'
+  };
+
   /* ---------------- language ---------------- */
 
   function currentLang() {
@@ -19,6 +32,8 @@
     document.documentElement.setAttribute('data-lang', lang);
     document.documentElement.setAttribute('lang', lang);
     document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    const page = document.body.getAttribute('data-page') || location.pathname;
+    document.title = lang === 'ar' ? (TITLES_AR[page] || TITLE_EN) : TITLE_EN;
     try { localStorage.setItem(LS_LANG, lang); } catch (_) {}
     document.querySelectorAll('[data-lang-btn]').forEach(b => {
       b.setAttribute('aria-pressed', String(b.dataset.langBtn === lang));

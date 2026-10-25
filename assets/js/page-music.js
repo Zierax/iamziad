@@ -16,13 +16,30 @@
           <span class="tag">ch ${m.chapter}</span>
         </div>
         <div class="sub">${esc(m.nameEn)}</div>
-        <iframe src="https://drive.google.com/file/d/${esc(m.driveId)}/preview"
-                width="100%" height="80" frameborder="0" allow="autoplay" loading="lazy"></iframe>
+        <audio controls preload="metadata"
+               src="https://drive.google.com/uc?export=download&id=${esc(m.driveId)}"></audio>
         <a href="https://drive.google.com/file/d/${esc(m.driveId)}/view" target="_blank" rel="noopener noreferrer"
            style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase">
           <span class="lang-en">open in Drive</span><span class="lang-ar">افتح في Drive</span>
         </a>
       </div>`).join('');
+
+    /* if direct playback fails (browser/DRM quirks), fall back to the Drive preview player */
+    host.querySelectorAll('.music-item audio').forEach(a => {
+      a.addEventListener('error', () => {
+        const item = a.closest('.music-item');
+        if (!item || item.querySelector('iframe')) return;
+        const id = new URL(a.src).searchParams.get('id');
+        if (!id) return;
+        const f = document.createElement('iframe');
+        f.src = 'https://drive.google.com/file/d/' + id + '/preview';
+        f.width = '100%'; f.height = '80';
+        f.setAttribute('frameborder', '0');
+        f.setAttribute('allow', 'autoplay');
+        f.loading = 'lazy';
+        a.replaceWith(f);
+      });
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);

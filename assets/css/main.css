@@ -56,6 +56,8 @@
   --pop: 4px 4px 0 var(--shadow);
   --pop-lg: 6px 6px 0 var(--shadow);
   --r: 16px;
+  /* ink for text sitting on saturated fills (tang/cherry/grape) — passes AA on both themes */
+  --on-fill: #100e1c;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -90,7 +92,11 @@ a, button, summary, .btn, .tgl, .tab-btn, .lang-pair button, .proj, .qa-item, .n
 .key-form input, input, textarea { cursor: text; }
 
 html[data-lang='ar'] body { font-family: var(--font-ar); line-height: 2; }
-html[data-lang='ar'] h1, html[data-lang='ar'] h2, html[data-lang='ar'] h3, html[data-lang='ar'] h4,
+/* Arabic gets its own display voice so headings keep a personality of their own */
+html[data-lang='ar'] h1, html[data-lang='ar'] h2, html[data-lang='ar'] h3, html[data-lang='ar'] h4 {
+  font-family: 'Lalezar', var(--font-ar);
+  letter-spacing: 0 !important; font-weight: 400; line-height: 1.5;
+}
 html[data-lang='ar'] .btn, html[data-lang='ar'] .eyebrow, html[data-lang='ar'] .tgl,
 html[data-lang='ar'] .chrome-nav a, html[data-lang='ar'] .tag, html[data-lang='ar'] .chrome-brand {
   font-family: var(--font-ar);
@@ -173,7 +179,7 @@ a:hover { color: var(--grape); }
 .chrome-nav a:nth-child(2n) { transform: rotate(.6deg); }
 .chrome-nav a:nth-child(3n) { transform: rotate(-.6deg); }
 .chrome-nav a:hover { transform: translate(-1px, -1px) rotate(0deg); box-shadow: 3px 3px 0 var(--shadow); color: var(--tang-dk); animation: wiggle .3s ease-in-out 1; }
-.chrome-nav a[aria-current='page'] { background: var(--tang); color: #fff; }
+.chrome-nav a[aria-current='page'] { background: var(--tang); color: var(--on-fill); }
 
 .chrome-tools { display: flex; gap: .4rem; align-items: center; }
 
@@ -185,7 +191,7 @@ a:hover { color: var(--grape); }
   box-shadow: 2px 2px 0 var(--shadow);
 }
 .tgl:hover { transform: translate(-1px, -1px) rotate(-1deg); }
-.tgl[aria-pressed='true'] { background: var(--grape); color: #fff; }
+.tgl[aria-pressed='true'] { background: var(--grape-dk); color: #fff; }
 
 /* sunny lamp in the top bar */
 .chrome-tools::before {
@@ -240,13 +246,13 @@ main > section .eyebrow::before {
   display: inline-flex; align-items: center; gap: .5rem;
   font-family: var(--font-px);
   font-size: .66rem; font-weight: 700;
-  color: #fff;
+  color: var(--on-fill);
   background: var(--tang); border: 2.5px solid var(--line);
   border-radius: 999px; padding: .32rem .8rem; margin: 0 0 1rem;
   box-shadow: 2px 2px 0 var(--shadow);
   transform: rotate(-1.2deg);
 }
-main > section:nth-of-type(even) .eyebrow { background: var(--grape); transform: rotate(1deg); }
+main > section:nth-of-type(even) .eyebrow { background: var(--grape-dk); color: #fff; transform: rotate(1deg); }
 main > section:nth-of-type(3n) .eyebrow { background: var(--sky-dk); }
 
 h1, h2, h3, h4 {
@@ -292,7 +298,7 @@ p:last-child { margin-bottom: 0; }
 .avatar i {
   position: absolute; bottom: -12px; inset-inline-start: -12px;
   font-style: normal; font-family: var(--font-px); font-size: .62rem; font-weight: 700;
-  background: var(--cherry); color: #fff; border: 2.5px solid var(--line);
+  background: var(--cherry); color: var(--on-fill); border: 2.5px solid var(--line);
   border-radius: 10px; padding: .15rem .55rem; box-shadow: 2px 2px 0 var(--shadow);
   animation: heartbeat 1.8s ease-in-out infinite;
 }
@@ -321,7 +327,7 @@ html[data-theme='dark'] .doodle { color: var(--tang); }
 
 .hero-name { font-size: clamp(1.6rem, 5vw, 2.5rem); margin: 0 0 .2rem; }
 .hero-name .last {
-  color: #fff; background: var(--tang);
+  color: var(--on-fill); background: var(--tang);
   border: 3px solid var(--line); border-radius: 12px; padding: 0 .5rem;
   display: inline-block; transform: rotate(1.5deg);
   box-shadow: 3px 3px 0 var(--shadow);
@@ -350,7 +356,7 @@ html[data-theme='dark'] .doodle { color: var(--tang); }
 .btn:hover { transform: translate(-2px, -2px) rotate(-1deg); box-shadow: 6px 6px 0 var(--shadow); color: var(--tang-dk); text-decoration: none; }
 .btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--shadow); }
 .btn.primary { background: var(--sun); color: var(--ink); }
-.btn.hot { background: var(--cherry); color: #fff; }
+.btn.hot { background: var(--cherry); color: var(--on-fill); }
 .btn.cool { background: var(--sky); color: var(--ink); }
 
 .btn.big { font-size: .85rem; padding: 1rem 1.6rem; }
@@ -375,7 +381,7 @@ html[data-theme='dark'] .doodle { color: var(--tang); }
   padding: .3rem .6rem; border: 2.5px solid var(--line);
   border-radius: 999px; background: var(--sun); color: var(--ink);
 }
-.tag.pink { background: var(--cherry); color: #fff; }
+.tag.pink { background: var(--cherry); color: var(--on-fill); }
 .tag.aqua, .tag.cool { background: var(--sky); color: var(--ink); }
 .tag.violet { background: var(--grape); color: #fff; }
 .tag.plain { background: var(--bg-2); }
@@ -589,10 +595,10 @@ html[data-theme='dark'] .doodle { color: var(--tang); }
 /* speaker strip */
 .qa-q {
   margin: 0; padding: .75rem 1rem; font-weight: 800; font-size: .95rem;
-  background: var(--grape); color: #fff; border-bottom: 3px solid var(--line);
+  background: var(--grape-dk); color: #fff; border-bottom: 3px solid var(--line);
 }
 .qa-item:nth-child(3n) .qa-q { background: var(--sky-dk); }
-.qa-item:nth-child(4n) .qa-q { background: var(--tang); }
+.qa-item:nth-child(4n) .qa-q { background: var(--tang); color: var(--on-fill); }
 /* the line itself */
 .qa-a {
   margin: 0; padding: .95rem 1.1rem; color: var(--ink);
@@ -603,6 +609,13 @@ html[data-theme='dark'] .doodle { color: var(--tang); }
   animation: blinkCursor 1.1s steps(1) infinite;
 }
 
+/* answers are collapsed; the question line opens them */
+.qa-item details { border-radius: inherit; overflow: hidden; }
+.qa-item summary.qa-q { display: block; cursor: pointer; list-style: none; }
+.qa-item summary.qa-q::-webkit-details-marker { display: none; }
+.qa-item summary.qa-q::after { content: '▾'; float: inline-end; opacity: .7; }
+.qa-item details[open] summary.qa-q::after { content: '▴'; }
+
 .q-tag { color: var(--sun); margin-inline-end: .5rem; }
 .a-tag { color: var(--tang-dk); font-weight: 800; margin-inline-end: .5rem; }
 
@@ -612,6 +625,12 @@ html[data-theme='dark'] .doodle { color: var(--tang); }
 .qa-item.stage1 .qa-a::after {
   content: '►'; position: absolute; top: .7rem; inset-inline-end: .9rem;
   color: var(--tang); font-size: 1rem; line-height: 1; margin: 0;
+  animation: blinkCursor 1.2s steps(1) infinite;
+}
+/* while collapsed, the stage-1 ► lives on the question so the trail stays visible */
+.qa-item.stage1 details:not([open]) summary.qa-q::after {
+  content: '►'; float: none; opacity: 1;
+  margin-inline-start: .4rem; color: var(--tang); font-size: 1rem;
   animation: blinkCursor 1.2s steps(1) infinite;
 }
 
@@ -679,7 +698,7 @@ html[dir='rtl'] .map-stage canvas { transform: scaleX(-1); }
 .now-cell:nth-child(3) { background: var(--sky); transform: rotate(.5deg); }
 .now-cell:nth-child(3) h4, .now-cell:nth-child(3) p { color: var(--ink); }
 .now-cell:nth-child(5) { background: var(--tang); transform: rotate(-.4deg); }
-.now-cell:nth-child(5) h4, .now-cell:nth-child(5) p { color: #fff; }
+.now-cell:nth-child(5) h4, .now-cell:nth-child(5) p { color: var(--on-fill); }
 .now-cell h4 { font-size: .68rem; font-weight: 700; color: var(--tang-dk); margin-bottom: .4rem; }
 .now-cell p { font-size: .95rem; font-weight: 600; color: var(--ink-2); margin: 0; }
 
@@ -711,7 +730,7 @@ html[dir='rtl'] .map-stage canvas { transform: scaleX(-1); }
   border-bottom: 3px solid var(--line);
 }
 .proj:nth-child(2) .proj-top { background: var(--sky); }
-.proj:nth-child(3) .proj-top { background: var(--grape); color: #fff; }
+.proj:nth-child(3) .proj-top { background: var(--grape-dk); color: #fff; }
 .proj-top .pid, .proj-top > span:first-child {
   font-family: var(--font-px); font-weight: 700; font-size: .64rem;
 }
@@ -758,6 +777,7 @@ blockquote:nth-child(even) .quote-author { color: var(--ink); }
 .music-item h4 { font-size: .8rem; margin: 0 0 .1rem; }
 .music-item .sub { font-size: .7rem; font-weight: 800; color: var(--muted); }
 .music-item iframe { width: 100%; height: 82px; border: 3px solid var(--line); border-radius: 12px; margin: .8rem 0 .5rem; }
+.music-item audio { width: 100%; height: 44px; margin: .8rem 0 .5rem; border: 3px solid var(--line); border-radius: 999px; background: var(--bg-2); }
 
 .tabs { display: flex; gap: .5rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
 .tab-btn {
@@ -767,7 +787,7 @@ blockquote:nth-child(even) .quote-author { color: var(--ink); }
   cursor: pointer; box-shadow: var(--pop);
 }
 .tab-btn:hover { animation: wiggle .3s ease-in-out 1; }
-.tab-btn.active { background: var(--tang); color: #fff; transform: translate(-1px, -1px); }
+.tab-btn.active { background: var(--tang); color: var(--on-fill); transform: translate(-1px, -1px); }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
@@ -788,7 +808,7 @@ blockquote:nth-child(even) .quote-author { color: var(--ink); }
   font-family: var(--font-px); font-size: .64rem; font-weight: 700;
   padding: .35rem .8rem; background: var(--bg-2); color: var(--ink); border: 0; cursor: pointer;
 }
-.lang-pair button.on { background: var(--tang); color: #fff; }
+.lang-pair button.on { background: var(--tang); color: var(--on-fill); }
 
 .chapter-text { font-size: 1.02rem; line-height: 1.85; color: var(--ink-2); font-weight: 500; }
 .chapter-text[dir='rtl'] { font-family: var(--font-ar); line-height: 2.05; }
@@ -834,7 +854,7 @@ blockquote:nth-child(even) .quote-author { color: var(--ink); }
 .ticker {
   overflow: hidden; white-space: nowrap;
   border-top: 3px solid var(--line); border-bottom: 3px solid var(--line);
-  background: var(--tang); color: #fff; padding: .45rem 0;
+  background: var(--tang); color: var(--on-fill); padding: .45rem 0;
   font-family: var(--font-px); font-size: .64rem; font-weight: 700;
 }
 .ticker-track { display: inline-flex; animation: tick 26s linear infinite; }
@@ -979,28 +999,28 @@ html[data-theme='dark'] .chrome { background: rgba(23, 20, 34, .94); }
 html[data-theme='dark'] .chrome-tools::before { box-shadow: none; animation: none; }
 html[data-theme='dark'] body[data-page="/"] main > section::before { opacity: .07; }
 html[data-theme='dark'] .lock::before { animation: none; }
-html[data-theme='dark'] .ticker { background: var(--bg-3); }
+html[data-theme='dark'] .ticker { background: var(--bg-3); color: var(--tang); }
 html[data-theme='dark'] a { color: var(--tang); }
 html[data-theme='dark'] ::selection { color: var(--ink); }
-html[data-theme='dark'] .hero-name .last { color: var(--ink); }
 html[data-theme='dark'] .lock { background: var(--grape-dk); }
 html[data-theme='dark'] .lock-title { color: var(--sun); }
 html[data-theme='dark'] .clock-cell:nth-child(3) b { color: var(--ink); }
 html[data-theme='dark'] .clock-cell:nth-child(4) b { color: var(--ink); }
-html[data-theme='dark'] .qa-q { color: var(--ink); }
+html[data-theme='dark'] .qa-q { color: var(--on-fill); }
 html[data-theme='dark'] .hint p, html[data-theme='dark'] .keybox p { color: var(--ink-2); }
 html[data-theme='dark'] .key-form input { background: var(--bg-3); color: var(--ink); }
 html[data-theme='dark'] .key-form input::placeholder { color: var(--muted); }
 html[data-theme='dark'] .chapter-text { color: var(--ink-2); }
 html[data-theme='dark'] .tab-btn.active, html[data-theme='dark'] .lang-pair button.on,
-html[data-theme='dark'] .tgl[aria-pressed='true'], html[data-theme='dark'] .chrome-nav a[aria-current='page'] { color: var(--ink); }
+html[data-theme='dark'] .tgl[aria-pressed='true'], html[data-theme='dark'] .chrome-nav a[aria-current='page'] { color: var(--on-fill); }
 html[data-theme='dark'] .toast { color: var(--ink); }
 html[data-theme='dark'] .q-tag { color: var(--sun); }
 html[data-theme='dark'] .a-tag { color: var(--tang); }
 html[data-theme='dark'] .chapter-num { color: var(--tang); }
 html[data-theme='dark'] .quote-author { color: var(--tang); }
-html[data-theme='dark'] .now-cell:nth-child(5) p, html[data-theme='dark'] .now-cell:nth-child(5) h4 { color: var(--ink); }
 html[data-theme='dark'] .node-row .handle { color: var(--tang); }
+html[data-theme='dark'] .proj:nth-child(3) .proj-top { color: var(--on-fill); }
+html[data-theme='dark'] main > section:nth-of-type(even) .eyebrow { color: var(--on-fill); }
 html[data-theme='dark'] .map-stage { background: radial-gradient(circle at 50% 45%, #2c2560, #12102b 70%); }
 html[data-theme='dark'] section + section { border-top-color: rgba(242, 239, 255, .25); }
 html[data-theme='dark'] .chapter-text hr, html[data-theme='dark'] .keybox { border-top-color: rgba(242, 239, 255, .3); }

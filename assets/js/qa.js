@@ -129,7 +129,7 @@ const QA = [
     a: 'Because I went through it, got told "strong candidate" and never once got told why. Everyone sells the answer and hides the arithmetic. So I published the arithmetic — every weight, every cap, every place it is wrong. It runs in your browser, it never phones home, and the formula is open. Built by a student who did not like guessing, for students who should not have to.',
     aAr: 'عشان أنا عديت فيها، وقولولي "مرشّح قوي" ومحدش قاللي ليه. الكل بيبيع الإجابة ويخبّي الحساب. ف أنا نشرت الحساب — كل وزن، كل حد، وكل مكان هو غلط فيه. بيشتغل في متصفحك، مش بيبعت لحد، والمعادلة مفتوحة. اتبنى من طالب مش عاجبه التخمين، لطلبة مفروض ما يحتاجوش تخمين.' },
 
-  { q: 'So are you a hacker or what?', qAr: 'يعني انت haccker ولا إيه؟',
+  { q: 'So are you a hacker or what?', qAr: 'يعني انت hacker ولا إيه؟',
     a: 'I report vulnerabilities for a living and that pays my rent. Programs I have worked on include AT&T, IBM, CBRE and a DoD vulnerability disclosure program. The dramatic version of this story is all over the internet; the boring accurate version is: read code carefully, write it down, and tell the people who own it.',
     aAr: 'أنا بلّغ عن ثغرات عشان أ-living، وده اللي بياكل عيشي. برامج اشتغلت عليها فيها AT&T و IBM و CBRE و برنامج إفصاح ثغرات تابع لوزارة الدفاع. النسخة الدراماتيكية من القصة دي متشيرة على النت، والنسخة المملة والدقيقة هي: اقرأ كود بتركيز، اكتبه، وقوله لللي مالكه.' },
 

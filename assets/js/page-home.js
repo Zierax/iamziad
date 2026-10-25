@@ -17,14 +17,16 @@
     if (!host || typeof QA === 'undefined') return;
     host.innerHTML = QA.map((item, i) => `
       <article class="qa-item${STAGE1.has(i + 1) ? ' stage1' : ''}" id="qa-${i + 1}">
-        <p class="qa-q">
-          <span class="lang-en"><span class="q-tag">[Q]</span>${esc(item.q)}</span>
-          <span class="lang-ar"><span class="q-tag">[س]</span>${esc(item.qAr)}</span>
-        </p>
-        <p class="qa-a">
-          <span class="lang-en"><span class="a-tag">[A]</span>${esc(item.a)}</span>
-          <span class="lang-ar"><span class="a-tag">[ج]</span>${esc(item.aAr)}</span>
-        </p>
+        <details>
+          <summary class="qa-q">
+            <span class="lang-en"><span class="q-tag">[Q]</span>${esc(item.q)}</span>
+            <span class="lang-ar"><span class="q-tag">[س]</span>${esc(item.qAr)}</span>
+          </summary>
+          <p class="qa-a">
+            <span class="lang-en"><span class="a-tag">[A]</span>${esc(item.a)}</span>
+            <span class="lang-ar"><span class="a-tag">[ج]</span>${esc(item.aAr)}</span>
+          </p>
+        </details>
       </article>`).join('');
 
     /* stage 1: those four answers open with l, l, m, s */

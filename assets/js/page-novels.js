@@ -22,6 +22,14 @@
 /* paths in the data are already repo-relative, e.g. "assets/x.png" */
   const mediaSrc = (raw) => '/' + String(raw).replace(/^\/+/, '');
 
+  /* chapters open in whatever language the visitor picked site-wide */
+  const siteLang = (() => {
+    try { return localStorage.getItem('iam.lang') === 'ar' ? 'ar' : 'en'; }
+    catch (_) {
+      return document.documentElement.getAttribute('data-lang') === 'ar' ? 'ar' : 'en';
+    }
+  })();
+
   function chapterHtml(novelId, ch, i) {
     const cap = `<figcaption><span class="lang-en">${esc(ch.title)}</span><span class="lang-ar">${esc(ch.titleAr)}</span></figcaption>`;
     const media = ch.video
@@ -56,14 +64,14 @@
             <h4>${esc(ch.title)}</h4>
           </div>
           <div class="lang-pair" role="group" aria-label="chapter language">
-            <button data-lang="ar" class="on">AR</button>
-            <button data-lang="en">EN</button>
+            <button data-lang="ar"${siteLang === 'ar' ? ' class="on"' : ''}>AR</button>
+            <button data-lang="en"${siteLang === 'en' ? ' class="on"' : ''}>EN</button>
           </div>
         </div>
         ${media}
         ${music}
-        <div class="chapter-text" data-lang="ar" dir="rtl">${fmt(ch.ar)}</div>
-        <div class="chapter-text" data-lang="en" hidden>${fmt(ch.en)}</div>
+        <div class="chapter-text" data-lang="ar" dir="rtl"${siteLang === 'ar' ? '' : ' hidden'}>${fmt(ch.ar)}</div>
+        <div class="chapter-text" data-lang="en"${siteLang === 'en' ? '' : ' hidden'}>${fmt(ch.en)}</div>
       </article>`;
   }
 
