@@ -287,7 +287,7 @@ p:last-child { margin-bottom: 0; }
 
 .hero-id { display: flex; gap: 1.6rem; align-items: center; flex-wrap: wrap; }
 
-.avatar { position: relative; display: inline-block; flex: none; }
+.avatar { position: relative; display: inline-block; flex: none; padding: .4rem; overflow: visible; }
 .hero-photo {
   width: 120px; height: 120px; object-fit: cover;
   border: 4px solid var(--line); border-radius: 28px;
@@ -309,8 +309,8 @@ p:last-child { margin-bottom: 0; }
   border-inline: 2px dashed rgba(38, 35, 61, .35);
   pointer-events: none;
 }
-.avatar::before { top: -12px; inset-inline-start: 12px; transform: rotate(-8deg); }
-.avatar::after { bottom: -12px; inset-inline-end: 12px; transform: rotate(6deg); }
+.avatar::before { top: -8px; inset-inline-start: 10px; transform: rotate(-8deg); }
+.avatar::after { bottom: -8px; inset-inline-end: 10px; transform: rotate(6deg); }
 html[data-theme='dark'] .avatar::before, html[data-theme='dark'] .avatar::after {
   background: rgba(255, 210, 31, .35);
 }
