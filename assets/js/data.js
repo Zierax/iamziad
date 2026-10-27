@@ -66,12 +66,12 @@ const NOW = {
   stamp: 'October 2026',
   stampAr: 'أكتوبر ٢٠٢٦',
   cells: [
-    { h: 'Where', hAr: 'فين', body: 'A room in Giza. Same city I grew up in, same Wi-Fi that taught me everything.', bodyAr: 'أوضة في الجيزة. نفس المدينة اللي اتعلمت فيها كل حاجة.' },
-    { h: 'Building', hAr: 'بنبني', body: 'Small things that actually run. Sandboxes, classifiers, tools I use myself.', bodyAr: 'حاجات صغيرة بتشتغل فعلاً. ساند بوكس، كلاسيفايرز، وأدوات أنا نفسه بستخدمها.' },
+    { h: 'Where', hAr: 'فين', body: 'A room in Giza. Same city I grew up in, same Wi-Fi that taught me everything.', bodyAr: 'أوضة في الجيزة. نفس المدينة اللي اتربيت فيها، ونفس الواي فاي اللي علمني كل حاجة.' },
+    { h: 'Building', hAr: 'ببني', body: 'Small things that actually run. Sandboxes, classifiers, tools I use myself.', bodyAr: 'حاجات صغيرة بتشتغل فعلاً. ساند بوكس، كلاسيفايرز، وأدوات أنا نفسه بستخدمها.' },
     { h: 'Writing', hAr: 'بكتب', body: 'Two novels. Both Arabic. The sequel is the one keeping me up.', bodyAr: 'روايتين. الاتنين عربي. التانية هي اللي بتخليني صاحي.' },
-    { h: 'Lifting', hAr: 'رفع حديد', body: 'Deadlifts most mornings. The bar does not care about my sleep schedule.', bodyAr: 'دِدليفट معظم الصبح. البار مش فارق معاه جدول نومي.' },
+    { h: 'Lifting', hAr: 'رفع حديد', body: 'Deadlifts most mornings. The bar does not care about my sleep schedule.', bodyAr: 'دِدليفت معظم الصبح. البار مش فارق معاه جدول نومي.' },
     { h: 'Learning', hAr: 'بتعلم', body: 'Something new every few weeks. Currently: proofs I do not understand yet.', bodyAr: 'حاجة جديدة كل أسبوعين. دلوقتي: براهين لسه مش فاهمها.' },
-    { h: 'Sleep', hAr: 'النوم', body: 'It happens. It is not a schedule, it is a negotiation I keep losing.', bodyAr: 'بيحصل. مش جدول، ده تفاوض خدته فيه كل مرة.' }
+    { h: 'Sleep', hAr: 'النوم', body: 'It happens. It is not a schedule, it is a negotiation I keep losing.', bodyAr: 'بيحصل. بس مش جدول — ده تفاوض بخسره في كل مرة.' }
   ]
 };
 
@@ -104,7 +104,7 @@ const PROJECTS = [
     kicker: 'from student to students',
     kickerAr: 'من طالب لطلبة',
     blurb: 'University admissions runs on fear and vague percentages. So I wrote the actual model: every weight, every cap, every limitation is visible in a transparency tab, and it all runs in your browser. No accounts, no data collection. If your number is wrong you can open the formula and see exactly why.',
-    blurbAr: 'قبول الجامعات شغال على الخوف ونسب مبهمة. عشان كده كتبت النموذج نفسه: كل وزن وكل حد وكل limitation باين في صفحة الشفافية، وكله بيشتغل في المتصفح بتاعك. من غير حسابات ومن غير ما ناخد أي بيانات. لو الرقم بتاعك غلط، افتح المعادلة وشوف ليه بالظبط.',
+    blurbAr: 'قبول الجامعات ماشي بالخوف ونسب مبهمة. عشان كده كتبت النموذج نفسه: كل وزن وكل حد وكل قيد باين في تاب الشفافية، وكله بيشتغل في المتصفح بتاعك. من غير حسابات ومن غير ما ناخد أي بيانات. لو الرقم بتاعك غلط، افتح المعادلة وشوف ليه بالظبط.',
     tags: ['TypeScript', 'Next.js', '5.2 MB model', 'local compute'],
     live: 'https://admitgpt.pages.dev/',
     source: 'https://github.com/Zierax/AdmitGPT',
@@ -123,7 +123,7 @@ const PROJECTS = [
     kicker: 'the professional one, with the technical stuff',
     kickerAr: 'الاحترافي، اللي فيه الشغل التقني',
     blurb: 'This site is the human behind the code. If you want the CV, the systems, the papers and the receipts, that is the other one.',
-    blurbAr: 'الموقع ده الإنسان ورا الكود. لو عايز الـ CV والأنظمة والأوراق والإثباتات، التاني هو ده.',
+    blurbAr: 'الموقع ده الإنسان ورا الكود. لو عايز الـ CV والأنظمة والأوراق والإثباتات، الموقع التاني هو ده.',
     tags: ['TypeScript', 'live'],
     live: 'https://ziad-portfolio-six.vercel.app',
     source: 'https://github.com/Zierax/Ziad-Portfolio',
@@ -138,19 +138,19 @@ const PROJECTS = [
 const VALUES = [
   { h: 'God', hAr: 'الله',
     b: 'Not because I grew up in Egypt, but because a creator as a first principle is the only framing I never managed to argue my way out of.',
-    bAr: 'مش لأني اتربيت في مصر، لكن لأن خالق كـ"مبدأ أول" هو الإطار الوحيد اللي مقدرتش أخرج منه بالجدال.' },
+    bAr: 'مش لأني اتربيت في مصر، لكن لأن خالق كـ"مبدأ أول" هو الإطار الوحيد اللي مقدرتش أطلع منه بالكلام.' },
   { h: 'Carbon first', hAr: 'الكربون الأول',
     b: 'Anything made of carbon that can feel pain outranks anything else on my list, including my own deadlines. Not a cute rule, just an ordering I try to keep.',
     bAr: 'أي حاجة من الكربون تقدر تحس بألم بتسبق أي حاجة تانية في قائمتي، حتى الـ deadlines بتاعتي. مش قاعدة لطيفة، دي ترتيب بحاول ألتزم بيه.' },
-  { h: 'The dead end', hAr: 'الطريق المسدود',
+  { h: 'The dead end', hAr: 'الحيطة',
     b: 'A dead end is not a failure, it is the exact point where the system has run out of room and the only way forward is changing the rules. Most people stop one street earlier.',
-    bAr: 'الطريق المسدود مش فشل، ده النقطة بالظبط اللي النظام خلص فيه مكان والطريقة الوحيدة للقدام إنك تغيّر القواعد. معظم الناس بيقفوا شارع قبلها.' }
+    bAr: 'الحيطة مش فشل، دي النقطة بالظبط اللي النظام خلص فيه مكان والطريقة الوحيدة للقدام إنك تغيّر القواعد. معظم الناس بيقفوا شارع قبلها.' }
 ];
 
 /* ---------------- Quotes (trimmed set) ---------------- */
 
 const QUOTES = [
-  { g: 'Determinism & Systems', gAr: 'المنطق الحتمي والأنظمة', items: [
+  { g: 'Determinism & Systems', gAr: 'الحتمية والأنظمة', items: [
     { t: 'An error does not become a flaw until you refuse to patch it.', a: 'Systems Axiom',
       tAr: 'الخطأ مش بيبقى عيب لحد ما ترفض تصلحه.', aAr: 'Systems Axiom' },
     { t: 'We are all running on inherited operating systems, trying to compile clean logic with corrupted data.', a: 'Ziad',
@@ -165,7 +165,7 @@ const QUOTES = [
       tAr: 'الكون شغال بقيود صارمة. مشاعرك متغيرات بتتفاوض مع الجاذبية.', aAr: 'زياد' },
     { t: 'God does not play dice.', a: 'Einstein', tAr: 'الله ما بلعبش النرد.', aAr: 'أينشتاين' }
   ]},
-  { g: 'Writing & Dark Material', gAr: 'الكتابة والمحتوى الغامق', items: [
+  { g: 'Writing & Dark Material', gAr: 'الكتابة والجو الغامق', items: [
     { t: 'You cannot cure a disease that is satisfied with its host.', a: 'The Holy Theft',
       tAr: 'مينفعش تعالج مرض راضي بمضيفه.', aAr: 'السرقة المقدسة' },
     { t: 'The gods are just entities that survived their own initialization sequence.', a: 'The Holy Theft',
@@ -179,13 +179,13 @@ const QUOTES = [
     { t: 'The iron does not lie to you. It weighs exactly what it weighs.', a: 'Ziad',
       tAr: 'الحديد ما بيكدبش عليك. بيزن بالظبط اللي بيوزنه.', aAr: 'زياد' },
     { t: 'Defeat is an uncalibrated load. Adjust the weight or let the structure break.', a: 'Lifting Axiom',
-      tAr: 'الهزيمة حمل مش متظبظ. ظبّط الوزن أو خلّي الهيكل ينكسر.', aAr: 'Lifting Axiom' },
+      tAr: 'الهزيمة حمل مش متظبّط. ظبّط الوزن أو خلّي الهيكل ينكسر.', aAr: 'Lifting Axiom' },
     { t: 'Fatigue is just noisy telemetry. Ignore the packet, hold the spine, execute the lift.', a: 'Lifting Axiom',
       tAr: 'الإرهاق مجرد telemetry مزعج. تجاهل الباكت، ثبّت العمود الفقري، نفّذ الرفعة.', aAr: 'Lifting Axiom' },
     { t: 'We do not build strength to carry light loads. We build it so the heavy ones feel ordinary.', a: 'Ziad',
       tAr: 'إحنا مش بنبني قوة عشان نcarry أحمال خفيفة. بنبنيها عشان التقيلة تحس عادية.', aAr: 'زياد' }
   ]},
-  { g: 'Brutalist', gAr: 'حقائق عارية', items: [
+  { g: 'Brutalist', gAr: 'كلام بلا رتوش', items: [
     { t: 'Knowledge without execution is just high-fidelity noise.', a: 'Ziad',
       tAr: 'المعرفة من غير تنفيذ مجرد noise بدقة عالية.', aAr: 'زياد' },
     { t: 'Silence is often a full database waiting for the correct query command.', a: 'Ziad',
@@ -219,7 +219,7 @@ const NOVEL_INDEX = [
     subtitleEn: 'A novel by Ziad Salah',
     subtitleAr: 'رواية لزياد صلاح',
     noteEn: 'A story about the end of the world, the nature of evil, and the price of playing God.',
-    noteAr: 'قصة عن نهاية العالم، وطبيعة الشر، وثمن لعب دور الإله.',
+    noteAr: 'حكاية عن نهاية العالم، وطبيعة الشر، وتمن إنك تلعب دور الإله.',
     orderEn: 'Read this one first.',
     orderAr: 'اقرأ دي الأول.',
     blurbEn: 'Hell teaches people not to expect anything beautiful early. Repetition becomes nature, and when pain is your nature you stop looking for its source. A child in that hell is listening anyway.',
@@ -232,10 +232,10 @@ const NOVEL_INDEX = [
     subtitleEn: 'The story of a god who was human — before time devoured him',
     subtitleAr: 'قصة الإله اللي كان إنسان — قبل ما الزمن يبلعه',
     noteEn: 'The prequel. Chronologically first, but written second.',
-    noteAr: 'القصة السابقة زمنياً. بتتقرأ الأول زمنياً، بس اتكتبت تانية.',
+    noteAr: 'بتحصل قبلها في الزمن. المفروض تتقرا الأول، بس هي اتكتبت التانية.',
     orderEn: 'Read this one second.',
     orderAr: 'اقرأ دي التانية.',
     blurbEn: 'He was not born out of myth. He was born out of a real betrayal, from the exact moment a woman decided loneliness justifies everything, and that she was old enough to be alone with it.',
-    blurbAr: 'هو ما اتولدش من أسطورة. اتولد من خيانة حقيقية، من اللحظة بالظبط اللي امرأة قررت فيها إن الوحدة بتبرر كل حاجة، وإنها تكون عندها سن كافي إنها تبقى لوحدها.'
+    blurbAr: 'هو ما اتولدش من أسطورة. اتولد من خيانة حقيقية، من اللحظة بالظبط اللي امرأة قررت فيها إن الوحدة بتبرر كل حاجة، وإنها بقت كبيرة كفاية تبقى لوحدها معاه.'
   }
 ];

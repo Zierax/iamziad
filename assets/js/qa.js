@@ -7,11 +7,11 @@
 
 const QA = [
   /* ---------- originals, verbatim ---------- */
-  { q: 'Does Ziad prefer Asian girls or Latinas?', qAr: 'هل يفضل زياد الفتيات الآسيويات أم اللاتينيات؟',
+  { q: 'Does Ziad prefer Asian girls or Latinas?', qAr: 'زياد بيفضّل الآسيويات ولا اللاتينيات؟',
     a: 'Why do you even care? Latinas, of course.',
     aAr: 'ليه أصلاً مهتم؟ اللاتينيات طبعاً.' },
 
-  { q: "What is Ziad's body count?", qAr: 'ما هو الـ body count بتاع زياد؟',
+  { q: "What is Ziad's body count?", qAr: 'إيه الـ body count بتاع زياد؟',
     a: 'Zero, sadly :<', aAr: 'صفر، للأسف :<' },
 
   { q: "What is Ziad's favorite food?", qAr: 'إيه هو أكلك المفضل؟',
@@ -37,7 +37,7 @@ const QA = [
 
   { q: "What is Ziad's favorite video game?", qAr: 'إيه أحسن لعبة فيديو بالنسبة لك؟',
     a: "Sekiro: Shadows Die Twice, Assassin's Creed II, and Assassin's Creed IV: Black Flag. If you can't parry in Sekiro, don't talk to me.",
-    aAr: "Sekiro: Shadows Die Twice، Assassin's Creed II، و Assassin's Creed IV: Black Flag. لو مش عارف تعمل parry في Sekiro، لا تكلمني." },
+    aAr: "Sekiro: Shadows Die Twice، Assassin's Creed II، و Assassin's Creed IV: Black Flag. لو مش عارف تعمل parry في Sekiro، متكلمنيش." },
 
   { q: "Who is Ziad's favorite rapper/singer?", qAr: 'مين مغنيك المفضل؟',
     a: 'Kanye West, King Von, Ken Carson, Chief keef, Karol G, Nicki Minaj',
@@ -50,10 +50,10 @@ const QA = [
   { q: "What's a faster runtime: You explaining to your mom why you're awake at 4:00 AM listening to Kanye West, or Planck-99 detecting a kernel exploit?",
     qAr: 'إيه الأسرع: إنك تشرح لأمك ليه صاحي الساعة 4 الفجر بتسمع Kanye West، ولا Planck-99 يكتشف kernel exploit؟',
     a: "Once my mom said to me that I am too aggressive and I could be awake for days to finish what I am doing whatever it is, then she said I am going to lose my mind soon (don't worry mama, Already lost it :>).",
-    aAr: 'مرة أمي قالت لي إني aggressive أوي وممكن أفضّل صاحي أيام عشان أخلص اللي بعمله، وبعدين قالت إني هخلي دماغي قريب (لا تقلقي يا ماما، خليتها من زمان :>).' },
+    aAr: 'مرة أمي قالت لي إني aggressive أوي وممكن أفضّل صاحي أيام عشان أخلص اللي بعمله، وبعدين قالت إني هتجنّ قريب (متقلقيش يا ماما، جنّيت من زمان :>).' },
 
   { q: "If your metacognitive AI framework cleared rigorous scientific reports peer reviews, why can't you write a script to convince your parents that 500kg leg presses are safe for an 18-year-old?",
-    qAr: 'لو إطارك المعرفي الفوقي اللي اجتاز مراجعات علمية صارمة، ليه مش عارف تكتب سكريبت تقنع أهلك إن 500kg leg presses آمنة لواحد عنده 18 سنة؟',
+    qAr: 'لو الإطار المعرفي بتاعك عدّى مراجعات علمية صارمة، إزاي مش عارف تكتب سكريبت يقنع أهلك إن 500kg leg press آمنة لواحد عنده 18 سنة؟',
     a: "500kg are not safe by any chance and don't try to do that, not at home or the f*cking gym, okay?",
     aAr: '500kg مش آمنة بأي شكل من الأشكال، متحاولش تعمل كده، لا في البيت ولا في الجيم، فاهمني؟' },
 
@@ -64,19 +64,19 @@ const QA = [
 
   { q: 'What is your sleep schedule?', qAr: 'إيه نظام نومك؟',
     a: "Night owl and day veteran. My day is f*cked up so basically I sleep whenever I feel like I want to temporarily die.",
-    aAr: 'بومة ليل ومخضرم نهار. يومي مدمر لذا أنام عندما أشعر أنني أريد الموت مؤقتاً.' },
+    aAr: 'بومة بالليل، خربان بالنهار. يومي بيخلص فبنام لما أحس إني عايز أموت شوية.' },
 
-  { q: 'Are you a nice guy to work with?', qAr: 'هل أنت شخص لطيف في الشغل؟',
+  { q: 'Are you a nice guy to work with?', qAr: 'انت لطيف في الشغل ولا إيه؟',
     a: "I am literally an angel and the most chill person you'll ever work with. But as I said it before: I hate stupid people. All you have to do is not be lazy with your thinking. If you are naturally stupid, there's no problem, but if you are just lazy, go back to sleep. It's easier.",
     aAr: 'أنا حرفياً ملاك وأهدأ شخص هتشتغل معاه. لكن زي ما قلت قبل كده: أنا بكره الأغبياء. كل اللي عليك تعمله إنك متبقاش كسول في تفكيرك. لو أنت غبي بالفطرة، مفيش مشكلة. لكن لو أنت كسول، ارجع نام. أسهل.' },
 
-  { q: 'What exactly is my quote?', qAr: 'ما هي مقولتي بالضبط؟',
+  { q: 'What exactly is my quote?', qAr: 'إيه مقولتي بالظبط؟',
     a: '"If you ever felt like you are stupid, good luck — you are. If you felt you are smart enough, so you are stupid." So how can we know who is smart and who is stupid? Just shut up and do your work.',
-    aAr: '"إذا شعرت يوماً أنك غبي، حظاً موفقاً — أنت غبي. إذا شعرت أنك ذكي بما فيه الكفاية، فأنت غبي." إذاً كيف نعرف من الذكي ومن الغبي؟ فقط اصمت واعمل.' },
+    aAr: '"لو حسّيت يوم إنك غبي، حظ سعيد — انت غبي. ولو حسّيت إنك ذكي كفاية، يبقى انت غبي برضه." طيب نعرف الذكي من الغبي إزاي؟ اسكت واشتغل.' },
 
-  { q: 'How does Ziad survive the Egyptian public school system?', qAr: 'كيف ينجو زياد من نظام المدارس الحكومية المصرية؟',
+  { q: 'How does Ziad survive the Egyptian public school system?', qAr: 'إزاي زياد بينجو من المدارس الحكومية المصرية؟',
     a: "I don't go to school. Nobody gives a shit about me there, no logs at all. GitHub has given me logs since 2019 so I love it. I hate school and stupid people (again).",
-    aAr: 'أنا لا أذهب إلى المدرسة. لا أحد يهتم بي هناك، لا سجلات على الإطلاق. GitHub أعطاني سجلات منذ 2019 لذلك أحبه. أنا أكره المدرسة والأغبياء (مرة أخرى).' },
+    aAr: 'أنا مبروحش المدرسة. محدش مهتم بيا هناك، مفيش سجلات خلاص. GitHub إداني سجلات من ٢٠١٩ عشان كده بحبه. بكره المدرسة والأغبياء (تاني).' },
 
   { q: 'If you are so dangerous and can compromise global networks, why can\'t you just hack the Egyptian education system and give yourself 100% in high school?',
     qAr: 'لو أنت خطير لدرجة إنك تقدر تخترق شبكات عالمية، ليه مش تقدر تخترق نظام التعليم المصري وتدّي نفسك 100% في الثانوية؟',
@@ -90,21 +90,21 @@ const QA = [
     a: "Because a legal name is just a label assigned to your birth coordinates without your consent. An alias is a string you define yourself.",
     aAr: 'لأن الاسم القانوني مجرد لصقة اتحطت على إحداثيات ميلادك من غير موافقتك. الاسم المستعار هو string بتعرّفه بنفسك.' },
 
-  { q: 'How can someone reach Ziad?', qAr: 'كيف يمكن لشخص ما الوصول إلى زياد؟',
+  { q: 'How can someone reach Ziad?', qAr: 'إزاي حد يوصل لزياد؟',
     a: 'I am not a celebrity, but type "Zierax" on Google and enjoy the first 10 pages.',
-    aAr: 'أنا لست مشهوراً، ولكن اكتب "Zierax" على Google واستمتع بأول 10 صفحات.' },
+    aAr: 'أنا مش مشهور، بس اكتب "Zierax" على Google واستمتع بأول ١٠ صفحات.' },
 
   { q: 'Why is this section even on a deep-tech website?', qAr: 'ليه القسم ده أصلاً موجود على موقع تقني عميق؟',
     a: "Because I own the server, and I can. If you're offended, go cry about it on Twitter.",
-    aAr: 'لأني باملك السيرفر، وبقدر. لو زعلك الكلام، اذهب وابكي على تويتر.' },
+    aAr: 'لأني صاحب السيرفر، وبقدر. لو الكلام زعّلك، روح عيّط على تويتر.' },
 
-  { q: 'Do you believe in luck?', qAr: 'هل تؤمن بالحظ؟',
+  { q: 'Do you believe in luck?', qAr: 'بتؤمن بالحظ؟',
     a: 'Luck is just an uncalculated variable. If you failed, your math was wrong or your sample size was too small. Fix the input, don\'t blame the dice. God does not play dice.',
-    aAr: 'الحظ مجرد متغير لم يتم حسابه. إذا فشلت، رياضياتك كانت غلط أو حجم العينة أقل من اللازم. صلّح المدخلات، لالقي باللوم على النرد. الله لا يلعب النرد.' },
+    aAr: 'الحظ ده مجرد متغير محدش حسبه. لو فشلت، يبقى رياضياتك كانت غلط ولا حجم العينة أصغر من اللازم. صلّح المدخلات ومترميش اللوم على النرد. الله ما بلعبش النرد.' },
 
-  { q: 'What programming language does Ziad absolutely despise?', qAr: 'ما هي لغة البرمجة التي يكرهها زياد كرهاً مطلقاً؟',
+  { q: 'What programming language does Ziad absolutely despise?', qAr: 'إيه اللغة اللي زياد بيكرهها كره مطلق؟',
     a: 'Python, when people use it for things that should have been written in C or Rust. Interpreted languages are for people who like to negotiate with execution time. I don\'t negotiate.',
-    aAr: 'Python، عندما يستخدمها الناس لأشياء كان المفروض تكتب بـ C أو Rust. اللغات المفسّرة للناس اللي بيحبوا يتفاوضوا مع وقت التنفيذ. أنا لا أتفاوض.' },
+    aAr: 'Python، لما الناس تستخدمها في حاجات كان المفروض تتكتب بـ C أو Rust. اللغات المفسّرة دي للناس اللي بيحبوا يتفاوضوا مع وقت التنفيذ. أنا مش بتفاوض.' },
 
   { q: 'What is your favorite (instrumental) music genre when you are compiling logic?', qAr: 'إيه نوع الموسيقى (الآلي) المفضل بتاعك وأنت بتكتب كود؟',
     a: 'Aggressive rage or classical-opera hybrids. The contrast between brute-force bass and mathematical symmetry in opera keeps the brain at maximum throughput.',
@@ -112,11 +112,11 @@ const QA = [
 
   { q: 'What Planck-99, and why should anyone care about nanosecond latency?', qAr: 'إيه Planck-99، وليه أي حد يهتم بسرعة النانوثانية؟',
     a: "It's a zero-dependency, ultra-low-latency malware detection engine I architected for MCU-class hardware. It achieves a 30-73ns latency at the Linux Kernel audit level. Why care? Because the EU CRA regulation window demands real-time compliance, not bloated, high-latency security scripts that negotiate with hardware cycles.",
-    aAr: 'هو محرك كشف برمجيات خبيثة بدون أي اعتماديات خارجية، بزمن استجابة فائق الانخفاض، صممته للهاردوير من فئة MCU. يحقق زمن استجابة 30-73 نانوثانية على مستوى Linux Kernel audit. وليه تهمك؟ لأن نافذة تنظيم EU CRA تتطلب امتثال فوري، مش سكريبتات أمنية عالية زمن الاستجابة بتتفاوض مع دورات الهاردوير.' },
+    aAr: 'محرك كشف برمجيات خبيثة من غير أي اعتماديات خارجية، بزمن استجابة فائق الانخفاض، معمول للهاردوير من فئة MCU. بيحقق ٣٠–٧٣ نانوثانية على مستوى Linux kernel audit. وليه تهمك؟ لأن نافذة تنظيم EU CRA بتطلب امتثال فوري، مش سكريبتات أمنية بطيئة بتتفاوض مع دورات الهاردوير.' },
 
   /* ---------- new, same shape ---------- */
   { q: 'Are you really writing these questions and then answering them? Are you crazy bro?',
-    qAr: 'هل أنت حقًا بتكتب الأسئلة دي وبتجاوب عليها؟ هل أنت مجنون يا صديقي؟',
+    qAr: 'انت بجد بتكتب الأسئلة دي وبتجاوب عليها؟ انت مجنون يا صاحبي؟',
     a: 'AHHHHHHHH, that is my server :>', aAr: 'اهههههههه، السيرفر بتاعي يسطا :>' },
 
   { q: 'Do you build a game boy to tell a girl you like her? What is that, what happened?',
@@ -139,13 +139,13 @@ const QA = [
 
   { q: 'Do you actually go to school?', qAr: 'انت فعلاً بتروح مدرسة؟',
     a: 'I finished secondary. I do not sit in classrooms. Nobody took attendance and nobody wrote a single line about me, which meant I got to build things instead of pretending to care.',
-    aAr: 'خلصت الثانوي. مش بقعد في فصول. محدش كان بيحضر ولا محدس كتب عني سطر واحد، ف ده خلاني أبني حاجات بدل ما أعمل تمثيل إنّي مهتم.' },
+    aAr: 'خلصت الثانوي. مش بقعد في فصول. محدش كان بيحضر ولا محدش كتب عني سطر واحد، ف ده خلاني أبني حاجات بدل ما أعمل تمثيل إنّي مهتم.' },
 
   { q: 'What is the weirdest thing in your repo?', qAr: 'أغرب حاجة في الـ repo بتاعك؟',
     a: 'There is a Grafana scanner that collects every CVE I could get into one version-aware script. It has more stars than most of my actual research. I am choosing to be happy about it.',
     aAr: 'في سكanner لـ Grafana بيجمّع كل ثغرة CVE قدرت أجمعها في سكريبت واحد فاهم رقم النسخة. عدد النجوم بتاعه أكبر من معظم البحث بتاعي. أنا مختار أفرح بيه.' },
 
-  { q: 'Are you a nice guy to work with? Wait, you already said that.', qAr: 'هل أنت لطيف في الشغل؟ استنى، انت ده قلتّه.',
+  { q: 'Are you a nice guy to work with? Wait, you already said that.', qAr: 'انت لطيف في الشغل؟ استنى، انت قلت ده خلاص.',
     a: 'I said what I said. I am not going to soften it because a website made me feel like I should.',
     aAr: 'قلت اللي قلته. مش هخففه عشان موقع خلّاني حاسس إن المفروض أخففه.' },
 
