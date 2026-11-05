@@ -12,15 +12,14 @@
     host.innerHTML = MUSIC.map(m => `
       <div class="music-item">
         <div style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:baseline">
-          <h4>${esc(m.name)}</h4>
-          <span class="tag">ch ${m.chapter}</span>
+          <h4><span class="lang-en">${esc(m.nameEn)}</span><span class="lang-ar">${esc(m.name)}</span></h4>
+          <span class="tag"><span class="lang-en">ch ${m.chapter}</span><span class="lang-ar">فصل ${m.chapter}</span></span>
         </div>
-        <div class="sub">${esc(m.nameEn)}</div>
+        <div class="sub"><span class="lang-en">${esc(m.name)}</span><span class="lang-ar">${esc(m.nameEn)}</span></div>
         <audio controls preload="metadata"
                src="https://drive.google.com/uc?export=download&id=${esc(m.driveId)}"></audio>
-        <a href="https://drive.google.com/file/d/${esc(m.driveId)}/view" target="_blank" rel="noopener noreferrer"
-           style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase">
-          <span class="lang-en">open in Drive</span><span class="lang-ar">افتح في Drive</span>
+        <a class="music-open" href="https://drive.google.com/file/d/${esc(m.driveId)}/view" target="_blank" rel="noopener noreferrer">
+          <span class="lang-en">open in Drive</span><span class="lang-ar">افتح على درايف</span> ↗
         </a>
       </div>`).join('');
 
@@ -36,6 +35,7 @@
         f.width = '100%'; f.height = '80';
         f.setAttribute('frameborder', '0');
         f.setAttribute('allow', 'autoplay');
+        f.setAttribute('title', 'Drive preview');
         f.loading = 'lazy';
         a.replaceWith(f);
       });

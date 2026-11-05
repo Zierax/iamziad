@@ -24,6 +24,10 @@
 
   /* chapters open in whatever language the visitor picked site-wide */
   const siteLang = (() => {
+    try {
+      const q = new URLSearchParams(location.search).get('lang');
+      if (q === 'ar' || q === 'en') return q;
+    } catch (_) {}
     try { return localStorage.getItem('iam.lang') === 'ar' ? 'ar' : 'en'; }
     catch (_) {
       return document.documentElement.getAttribute('data-lang') === 'ar' ? 'ar' : 'en';
@@ -49,8 +53,8 @@
                </div>
              </div>
              <audio controls preload="metadata" src="https://drive.google.com/uc?export=download&id=${esc(ch.music.driveId)}"></audio>
-             <a class="music-open" href="https://drive.google.com/file/d/${esc(ch.music.driveId)}/view" target="_blank" rel="noopener">
-               <span class="lang-en">open on Drive</span><span class="lang-ar">افتح على درايف</span> ↗
+             <a class="music-open" href="https://drive.google.com/file/d/${esc(ch.music.driveId)}/view" target="_blank" rel="noopener noreferrer">
+               <span class="lang-en">open in Drive</span><span class="lang-ar">افتح على درايف</span> ↗
              </a>
            </div>
          </div>`
@@ -60,8 +64,8 @@
       <article class="chapter" id="${novelId}-ch${i}">
         <div class="chapter-head">
           <div>
-            <span class="chapter-num"><span class="lang-en">chapter ${ch.num}</span><span class="lang-ar">الفصل ${ch.num}</span></span>
-            <h4>${esc(ch.title)}</h4>
+            ${ch.num > 0 ? `<span class="chapter-num"><span class="lang-en">chapter ${ch.num}</span><span class="lang-ar">الفصل ${ch.num}</span></span>` : ''}
+            <h4><span class="lang-en">${esc(ch.title)}</span><span class="lang-ar">${esc(ch.titleAr)}</span></h4>
           </div>
           <div class="lang-pair" role="group" aria-label="chapter language">
             <button data-lang="ar"${siteLang === 'ar' ? ' class="on"' : ''}>AR</button>
@@ -118,7 +122,7 @@
               <span class="lang-en">${esc(n.noteEn)}</span><span class="lang-ar">${esc(n.noteAr)}</span>
             </p>
             <div class="chip-row">
-              <span class="tag cool">${chapters.length} <span class="lang-en">chapters</span><span class="lang-ar">فصل</span></span>
+              <span class="tag cool">${chapters.filter(c => c.num > 0).length} <span class="lang-en">chapters</span><span class="lang-ar">فصل</span></span>
               <span class="tag">${n.id === 'holy-theft' ? '<span class="lang-en">read first</span><span class="lang-ar">اتقرأ الأول</span>' : '<span class="lang-en">read second</span><span class="lang-ar">اتقرأ بعد الأول</span>'}</span>
             </div>
           </div>
@@ -147,6 +151,15 @@
         });
       });
     });
+
+    /* keep chapter language in step with the site-wide toggle */
+    window.IAM_SYNC_LANG = (lang) => {
+      const l = lang === 'ar' ? 'ar' : 'en';
+      panels.querySelectorAll('.chapter').forEach(chapter => {
+        chapter.querySelectorAll('.lang-pair button').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
+        chapter.querySelectorAll('.chapter-text').forEach(t => { t.hidden = t.dataset.lang !== l; });
+      });
+    };
 
     /* if Drive refuses direct playback, fall back to the embedded player */
     panels.querySelectorAll('.music-card audio').forEach(a => {

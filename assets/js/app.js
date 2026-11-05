@@ -40,6 +40,8 @@
     });
     const label = document.querySelector('[data-lang-label]');
     if (label) label.textContent = lang === 'ar' ? 'AR' : 'EN';
+    /* pages that own language-aware blocks (novel chapters) re-sync here */
+    if (typeof window.IAM_SYNC_LANG === 'function') window.IAM_SYNC_LANG(lang);
   }
 
   /* ---------------- theme ---------------- */
@@ -314,7 +316,7 @@
             <span class="handle">${n.handle}</span>
             ${n.note ? `<small><span class="lang-en">${n.note}</span><span class="lang-ar">${n.noteAr || n.note}</span></small>` : ''}
           </span>
-          <span class="tag">${(MAP_KINDS[n.kind] || {}).label || n.kind}</span>
+          <span class="tag"><span class="lang-en">${(MAP_KINDS[n.kind] || {}).label || n.kind}</span><span class="lang-ar">${(MAP_KINDS[n.kind] || {}).labelAr || (MAP_KINDS[n.kind] || {}).label || n.kind}</span></span>
         </a>`).join('');
     }
 

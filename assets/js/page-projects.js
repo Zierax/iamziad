@@ -16,20 +16,20 @@
           <span>${p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join(' ')}</span>
         </div>
         <div class="proj-body">
-          <h3>${esc(p.name)}</h3>
+          <h3><span class="lang-en">${esc(p.name)}</span><span class="lang-ar">${esc(p.nameAr || p.name)}</span></h3>
           <p class="kicker"><span class="lang-en">${esc(p.kicker)}</span><span class="lang-ar">${esc(p.kickerAr)}</span></p>
 
           <p><span class="lang-en">${esc(p.blurb)}</span><span class="lang-ar">${esc(p.blurbAr)}</span></p>
 
           <div class="stat-row" style="margin-top:1.2rem">
-            ${p.facts.map(f => `<div class="stat"><b>${esc(f.v)}</b><span>${esc(f.l)}</span></div>`).join('')}
+            ${p.facts.map(f => `<div class="stat"><b>${esc(f.v)}</b><span><span class="lang-en">${esc(f.l)}</span><span class="lang-ar">${esc(f.lAr || f.l)}</span></span></div>`).join('')}
           </div>
 
           <p class="note"><span class="lang-en">${esc(p.note)}</span><span class="lang-ar">${esc(p.noteAr)}</span></p>
 
           <div class="chip-row">
             ${p.live ? `<a class="btn primary" href="${esc(p.live)}" target="_blank" rel="noopener noreferrer"><span class="lang-en">open it</span><span class="lang-ar">افتحه</span></a>` : ''}
-            ${p.source ? `<a class="btn" href="${esc(p.source)}" target="_blank" rel="noopener noreferrer">source</a>` : ''}
+            ${p.source ? `<a class="btn" href="${esc(p.source)}" target="_blank" rel="noopener noreferrer"><span class="lang-en">source</span><span class="lang-ar">السورس</span></a>` : ''}
           </div>
         </div>
       </article>`).join('');

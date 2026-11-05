@@ -90,9 +90,9 @@ const PROJECTS = [
     live: 'https://i-like-u-kappa.vercel.app',
     source: 'https://github.com/Zierax/I-Like-U',
     facts: [
-      { v: 'MIT', l: 'licensed' },
-      { v: '0 KB', l: 'audio files' },
-      { v: '4', l: 'companions' }
+      { v: 'MIT', l: 'licensed', lAr: 'مرخّص' },
+      { v: '0 KB', l: 'audio files', lAr: 'ملفات صوت' },
+      { v: '4', l: 'companions', lAr: 'رفاق' }
     ],
     note: 'The honest answer to a question I was too nervous to type.',
     noteAr: 'الإجابة الصادقة لسؤال أنا كنت خايف أكتبه.'
@@ -109,9 +109,9 @@ const PROJECTS = [
     live: 'https://admitgpt.pages.dev/',
     source: 'https://github.com/Zierax/AdmitGPT',
     facts: [
-      { v: '1,122', l: 'profiles' },
-      { v: '100%', l: 'local' },
-      { v: '0', l: 'tracking' }
+      { v: '1,122', l: 'profiles', lAr: 'بروفايل' },
+      { v: '100%', l: 'local', lAr: 'محلي' },
+      { v: '0', l: 'tracking', lAr: 'تتبع' }
     ],
     note: 'Built because I went through it and did not like the guessing.',
     noteAr: 'اتبنى عشان أنا عديت فيها ومكانش عاجبني التخمين.'
@@ -127,7 +127,7 @@ const PROJECTS = [
     tags: ['TypeScript', 'live'],
     live: 'https://ziad-portfolio-six.vercel.app',
     source: 'https://github.com/Zierax/Ziad-Portfolio',
-    facts: [{ v: 'live', l: 'always' }],
+    facts: [{ v: 'live', l: 'always', lAr: 'دايمًا' }],
     note: 'This site says "don\'t judge my career from here". That was not an accident.',
     noteAr: 'الموقع ده بيقول "ما تحكمش على شغلي من هنا". دي كانت مقصودة.'
   }
